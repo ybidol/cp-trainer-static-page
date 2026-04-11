@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {delimiters: [{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cf: '#1890ff',
+                        atcoder: '#6f42c1',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --bg-deep: #0a0a0f;
+            --bg-surface: #12121a;
+            --bg-raised: #1a1a26;
+            --border: #2a2a3a;
+            --text-primary: #eeeef0;
+            --text-secondary: #a0a0b0;
+            --text-muted: #6a6a7e;
+        }
+        body { font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 1.7; background: var(--bg-deep); -webkit-font-smoothing: antialiased; }
+        .bg-gray-950 { background: var(--bg-deep) !important; }
+        .bg-gray-900 { background: var(--bg-surface) !important; }
+        .bg-gray-800 { background: var(--bg-raised) !important; }
+        .border-gray-800 { border-color: var(--border) !important; }
+        .text-gray-100 { color: var(--text-primary) !important; }
+        .text-gray-400 { color: var(--text-secondary) !important; }
+        .text-gray-500 { color: #8888a0 !important; }
+        .text-gray-600 { color: var(--text-muted) !important; }
+        .text-xs { font-size: 0.875rem !important; }
+        .text-sm { font-size: 1rem !important; }
+        .font-mono { font-family: 'JetBrains Mono', monospace !important; }
+        .rounded-xl { border-radius: 16px !important; }
+        .rec-reason { font-size: 1.05rem !important; line-height: 1.7 !important; }
+        details .text-sm { font-size: 1.05rem !important; line-height: 1.8 !important; color: #d0d0dc !important; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen">
+    <nav class="bg-gray-900 border-b border-gray-800 sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <span class="text-2xl font-bold text-white tracking-tight">Practice</span>
+            <span class="text-xs text-gray-600">2026-04-11</span>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 py-6">
+
+
+<div class="space-y-3">
+    
+    <div class="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden
+        border-l-4 border-l-yellow-500">
+        <div class="p-5">
+            <div class="flex items-start justify-between gap-4">
+                <div class="flex-1">
+                    <div class="flex items-center gap-2 mb-2 flex-wrap">
+                        <span class="text-xs font-medium uppercase px-2 py-0.5 rounded
+                            bg-atcoder/20 text-atcoder">
+                            AC
+                        </span>
+                    </div>
+                    <a href="https://atcoder.jp/contests/abc178/tasks/abc178_e" target="_blank"
+                       class="text-lg font-semibold text-blue-400 hover:underline">
+                        E. Dist Max
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="border-t border-gray-800 px-5 py-3">
+            
+            <details class="">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                    Hint 1
+                </summary>
+                <div class="text-sm text-gray-300 mt-1 ml-4">Think about what happens when you <strong>expand the absolute values</strong> in the Manhattan distance formula $|x_i - x_j| + |y_i - y_j|$. Each absolute value can be positive or negative — how many cases are there, and can you simplify them?</div>
+            </details>
+            
+            <details class="mt-2">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                    Hint 2
+                </summary>
+                <div class="text-sm text-gray-300 mt-1 ml-4">The key identity: $|x_i - x_j| + |y_i - y_j| = \max((x_i+y_i)-(x_j+y_j),\; (x_i-y_i)-(x_j-y_j),\; \text{negatives})$. This means the answer is $\max(\max(x+y) - \min(x+y),\; \max(x-y) - \min(x-y))$. Compute <strong>two arrays</strong>: $s_i = x_i + y_i$ and $d_i = x_i - y_i$.</div>
+            </details>
+            
+            <details class="mt-2">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                    Hint 3
+                </summary>
+                <div class="text-sm text-gray-300 mt-1 ml-4">Compute $s = [x+y \text{ for each point}]$ and $d = [x-y \text{ for each point}]$. The answer is $\max(\max(s)-\min(s),\; \max(d)-\min(d))$. This runs in $O(N)$ — no sorting needed.</div>
+            </details>
+            
+            <details class="mt-2">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                    Editorial
+                </summary>
+                <div class="text-sm text-gray-300 mt-1 ml-4"><a href="https://atcoder.jp/contests/abc178/editorial" target="_blank" class="text-blue-400 hover:text-blue-300 underline">Read Editorial &rarr;</a></div>
+            </details>
+            
+
+            <!-- Why this problem -->
+            
+            <details class="mt-2">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">Why this problem?</summary>
+                <div class="text-sm text-gray-400 mt-1 ml-4">This problem teaches the elegant <strong>Manhattan distance to Chebyshev distance transformation</strong> — a classic coordinate geometry trick where you rotate axes by 45° to decouple dimensions. It's a well-known technique that appears repeatedly in competitive programming and builds strong geometric intuition.</div>
+            </details>
+            
+
+            <!-- Prerequisites -->
+            
+            <details class="mt-2">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">Prerequisites</summary>
+                <div class="mt-2 ml-4 space-y-4">
+                    
+                    
+                    
+                    <div class="border-l-2 border-gray-700 pl-4">
+                        <h4 class="text-sm font-semibold text-gray-200 mb-1">Math (General)</h4>
+                        <p class="text-xs text-gray-400 mb-2">Math problems in CP require number sense, algebraic manipulation, and pattern recognition. At CF 1200-1700, common math topics: modular arithmetic, basic combinatorics, parity arguments, floor/ceil tricks, and recognizing mathematical formulas behind the problem.</p>
+                        
+                        <div class="space-y-2 mb-2">
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <div class="text-xs">
+                                <span class="text-gray-300 font-medium">Observation and pattern finding</span>
+                                <span class="text-gray-500"> — Many math problems require spotting a pattern from small cases. Compute answers for n=1,2,3,...,10, look for a formula. Often the answer is a simple closed-form expression.</span>
+                            </div>
+                            
+                            
+                        </div>
+                        <details class="mb-2">
+                            <summary class="text-xs text-gray-500 hover:text-gray-300 cursor-pointer">Common pitfalls</summary>
+                            <ul class="mt-1 text-xs text-red-400/70 space-y-0.5 list-disc list-inside">
+                                
+                                <li>Integer overflow in intermediate calculations</li>
+                                
+                                <li>Negative numbers with modulo — add m before taking mod</li>
+                                
+                                <li>Off-by-one in prefix sums</li>
+                                
+                                <li>Trusting a formula that works on examples without proving it</li>
+                                
+                            </ul>
+                        </details>
+                    </div>
+                    
+                    
+                </div>
+            </details>
+            
+        </div>
+        
+    </div>
+    
+    <div class="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden
+        border-l-4 border-l-red-500
+        ">
+        <div class="p-5">
+            <div class="flex items-start justify-between gap-4">
+                <div class="flex-1">
+                    <div class="flex items-center gap-2 mb-2 flex-wrap">
+                        <span class="text-xs font-medium uppercase px-2 py-0.5 rounded
+                            bg-atcoder/20 text-atcoder">
+                            AC
+                        </span>
+                    </div>
+                    <a href="https://atcoder.jp/contests/abc167/tasks/abc167_d" target="_blank"
+                       class="text-lg font-semibold text-blue-400 hover:underline">
+                        D. Teleporter
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="border-t border-gray-800 px-5 py-3">
+            
+            <details class="">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                    Hint 1
+                </summary>
+                <div class="text-sm text-gray-300 mt-1 ml-4">With $K$ up to $10^{18}$, you clearly can't simulate each step. Think about what must happen when you keep following the teleporters — there are only $N$ towns, so what's inevitable?</div>
+            </details>
+            
+            <details class="mt-2">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                    Hint 2
+                </summary>
+                <div class="text-sm text-gray-300 mt-1 ml-4">Since there are only $N$ towns, by the <strong>pigeonhole principle</strong> you must revisit a town within $N$ steps, forming a <strong>cycle</strong>. Simulate the path from town 1, detect when you first revisit a town, and then use <strong>modular arithmetic</strong> on $K$ with the cycle length to skip ahead.</div>
+            </details>
+            
+            <details class="mt-2">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                    Hint 3
+                </summary>
+                <div class="text-sm text-gray-300 mt-1 ml-4">Build the path as a list. Use a dictionary to record when each town was first visited. Once you see a repeat, the cycle length is <strong>current_step - first_visit[town]</strong>. If $K$ falls before the cycle, just index the path directly. Otherwise, compute $(K - \text{cycle\_start}) \mod \text{cycle\_length}$ and index into the cycle portion.</div>
+            </details>
+            
+            <details class="mt-2">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                    Editorial
+                </summary>
+                <div class="text-sm text-gray-300 mt-1 ml-4"><a href="https://atcoder.jp/contests/abc167/editorial" target="_blank" class="text-blue-400 hover:text-blue-300 underline">Read Editorial &rarr;</a></div>
+            </details>
+            
+
+            <!-- Why this problem -->
+            
+            <details class="mt-2">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">Why this problem?</summary>
+                <div class="text-sm text-gray-400 mt-1 ml-4"><strong>Cycle detection in functional graphs</strong> — follow-the-pointer with a huge step count teaches you to decompose the path into a prefix and repeating cycle using modular arithmetic. A clean, fundamental technique that appears constantly in competitive programming.</div>
+            </details>
+            
+
+            <!-- Prerequisites -->
+            
+            <details class="mt-2">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">Prerequisites</summary>
+                <div class="mt-2 ml-4 space-y-4">
+                    
+                    
+                    
+                    <div class="border-l-2 border-gray-700 pl-4">
+                        <h4 class="text-sm font-semibold text-gray-200 mb-1">Implementation</h4>
+                        <p class="text-xs text-gray-400 mb-2">Implementation problems have straightforward logic but tricky coding. No clever algorithm needed — just careful, correct code. The challenge is handling edge cases, parsing input correctly, and not making bugs in complex simulations.</p>
+                        
+                        <div class="space-y-2 mb-2">
+                            
+                            
+                            <div class="text-xs">
+                                <span class="text-gray-300 font-medium">Simulation</span>
+                                <span class="text-gray-500"> — Do exactly what the problem says, step by step. Read the problem statement carefully. Translate rules into code literally. Often the solution is just a careful simulation loop.</span>
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                        </div>
+                        <details class="mb-2">
+                            <summary class="text-xs text-gray-500 hover:text-gray-300 cursor-pointer">Common pitfalls</summary>
+                            <ul class="mt-1 text-xs text-red-400/70 space-y-0.5 list-disc list-inside">
+                                
+                                <li>Not reading the problem carefully enough — re-read before coding</li>
+                                
+                                <li>Overcomplicating the solution — if it&#39;s tagged &#39;implementation&#39;, keep it simple</li>
+                                
+                                <li>Not testing edge cases before submitting</li>
+                                
+                                <li>Using the wrong data type (int vs long long, float precision)</li>
+                                
+                            </ul>
+                        </details>
+                    </div>
+                    
+                    
+                    
+                    
+                    <div class="border-l-2 border-gray-700 pl-4">
+                        <h4 class="text-sm font-semibold text-gray-200 mb-1">Math (General)</h4>
+                        <p class="text-xs text-gray-400 mb-2">Math problems in CP require number sense, algebraic manipulation, and pattern recognition. At CF 1200-1700, common math topics: modular arithmetic, basic combinatorics, parity arguments, floor/ceil tricks, and recognizing mathematical formulas behind the problem.</p>
+                        
+                        <div class="space-y-2 mb-2">
+                            
+                            
+                            <div class="text-xs">
+                                <span class="text-gray-300 font-medium">Modular arithmetic</span>
+                                <span class="text-gray-500"> — (a+b)%m = ((a%m)+(b%m))%m. Same for multiplication. Division requires modular inverse. Essential for &#39;answer mod 10^9+7&#39; problems.</span>
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <div class="text-xs">
+                                <span class="text-gray-300 font-medium">Observation and pattern finding</span>
+                                <span class="text-gray-500"> — Many math problems require spotting a pattern from small cases. Compute answers for n=1,2,3,...,10, look for a formula. Often the answer is a simple closed-form expression.</span>
+                            </div>
+                            
+                            
+                        </div>
+                        <details class="mb-2">
+                            <summary class="text-xs text-gray-500 hover:text-gray-300 cursor-pointer">Common pitfalls</summary>
+                            <ul class="mt-1 text-xs text-red-400/70 space-y-0.5 list-disc list-inside">
+                                
+                                <li>Integer overflow in intermediate calculations</li>
+                                
+                                <li>Negative numbers with modulo — add m before taking mod</li>
+                                
+                                <li>Off-by-one in prefix sums</li>
+                                
+                                <li>Trusting a formula that works on examples without proving it</li>
+                                
+                            </ul>
+                        </details>
+                    </div>
+                    
+                    
+                </div>
+            </details>
+            
+        </div>
+        
+    </div>
+    
+    <div class="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden
+        border-l-4 border-l-red-500
+        ">
+        <div class="p-5">
+            <div class="flex items-start justify-between gap-4">
+                <div class="flex-1">
+                    <div class="flex items-center gap-2 mb-2 flex-wrap">
+                        <span class="text-xs font-medium uppercase px-2 py-0.5 rounded
+                            bg-cf/20 text-cf
+                            ">
+                            CF
+                        </span>
+                    </div>
+                    <a href="https://codeforces.com/contest/550/problem/B" target="_blank"
+                       class="text-lg font-semibold text-blue-400 hover:underline">
+                        Preparing Olympiad
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="border-t border-gray-800 px-5 py-3">
+            
+            <details class="">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                    Hint 1
+                </summary>
+                <div class="text-sm text-gray-300 mt-1 ml-4">Notice that $n \leq 15$. This is a very small constraint. Think about how many <strong>total subsets</strong> exist for $n$ elements and whether you can check every single one.</div>
+            </details>
+            
+            <details class="mt-2">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                    Hint 2
+                </summary>
+                <div class="text-sm text-gray-300 mt-1 ml-4">With $n \leq 15$, there are $2^{15} = 32768$ subsets — easily within time limits. <strong>Enumerate all subsets</strong> using a bitmask from $0$ to $2^n - 1$. For each subset, check whether it satisfies all three conditions.</div>
+            </details>
+            
+            <details class="mt-2">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                    Hint 3
+                </summary>
+                <div class="text-sm text-gray-300 mt-1 ml-4">For each bitmask, extract the selected elements and compute: (1) the <strong>count</strong> of selected problems (must be $\geq 2$), (2) the <strong>sum</strong> of difficulties (must be in $[l, r]$), and (3) the <strong>difference</strong> between max and min difficulty (must be $\geq x$). Count subsets passing all three.</div>
+            </details>
+            
+            <details class="mt-2">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                    Hint 4
+                </summary>
+                <div class="text-sm text-gray-300 mt-1 ml-4">In Python, loop <code>for mask in range(1, 1 << n)</code>. Use <code>bit & (1 << i)</code> to check membership. Collect the selected difficulties into a list, then check <code>len >= 2</code>, <code>l <= sum <= r</code>, and <code>max - min >= x</code>. This runs in $O(2^n \cdot n)$ which is trivially fast.</div>
+            </details>
+            
+            <details class="mt-2">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                    Editorial
+                </summary>
+                <div class="text-sm text-gray-300 mt-1 ml-4"><a href="https://codeforces.com/search?query=editorial+550" target="_blank" class="text-blue-400 hover:text-blue-300 underline">Read Editorial &rarr;</a></div>
+            </details>
+            
+
+            <!-- Why this problem -->
+            
+            <details class="mt-2">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">Why this problem?</summary>
+                <div class="text-sm text-gray-400 mt-1 ml-4"><strong>Bitmask enumeration</strong> over subsets — with n≤15, you iterate all 2^n subsets and filter by multiple constraints (difficulty range, count range). It's a clean, foundational brute-force technique that appears constantly in CP, and the problem makes the concept click because each constraint is easy to check once you have the subset.</div>
+            </details>
+            
+
+            <!-- Prerequisites -->
+            
+            <details class="mt-2">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">Prerequisites</summary>
+                <div class="mt-2 ml-4 space-y-4">
+                    
+                    
+                    
+                    <div class="border-l-2 border-gray-700 pl-4">
+                        <h4 class="text-sm font-semibold text-gray-200 mb-1">Bitmask / Bit Manipulation</h4>
+                        <p class="text-xs text-gray-400 mb-2">Bitmasks represent sets as integers, where bit i being 1 means element i is in the set. Enables O(1) set operations (union, intersection, membership) and DP over subsets when n is small (≤ 20). Also useful for encoding states compactly.</p>
+                        
+                        <div class="space-y-2 mb-2">
+                            
+                            
+                            <div class="text-xs">
+                                <span class="text-gray-300 font-medium">Basic operations</span>
+                                <span class="text-gray-500"> — Set bit i: mask |= (1 &lt;&lt; i). Clear bit i: mask &amp;= ~(1 &lt;&lt; i). Check bit i: (mask &gt;&gt; i) &amp; 1. Toggle: mask ^= (1 &lt;&lt; i). Count bits: __builtin_popcount(mask).</span>
+                            </div>
+                            
+                            
+                            
+                            <div class="text-xs">
+                                <span class="text-gray-300 font-medium">Iterating over subsets</span>
+                                <span class="text-gray-500"> — Enumerate all subsets of {0,...,n-1}: for mask in range(1 &lt;&lt; n). Enumerate all subsets of a mask: sub = mask; while sub &gt; 0: sub = (sub-1) &amp; mask.</span>
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                            
+                        </div>
+                        <details class="mb-2">
+                            <summary class="text-xs text-gray-500 hover:text-gray-300 cursor-pointer">Common pitfalls</summary>
+                            <ul class="mt-1 text-xs text-red-400/70 space-y-0.5 list-disc list-inside">
+                                
+                                <li>Using bitmask for n &gt; 25 — 2^25 = 33M states, borderline</li>
+                                
+                                <li>1 &lt;&lt; n overflows 32-bit int for n ≥ 31 — use 1LL &lt;&lt; n</li>
+                                
+                                <li>Confusing | (OR/union) with &amp; (AND/intersection)</li>
+                                
+                                <li>Off-by-one in bit indexing — bit 0 is the least significant</li>
+                                
+                            </ul>
+                        </details>
+                    </div>
+                    
+                    
+                    
+                    
+                    <div class="border-l-2 border-gray-700 pl-4">
+                        <h4 class="text-sm font-semibold text-gray-200 mb-1">Brute Force / Complete Search</h4>
+                        <p class="text-xs text-gray-400 mb-2">Try all possibilities. It&#39;s the first approach to consider — if the search space is small enough, brute force is the simplest correct solution. Key skill: estimating whether brute force will pass within time limits, and pruning to make it faster.</p>
+                        
+                        <div class="space-y-2 mb-2">
+                            
+                            
+                            <div class="text-xs">
+                                <span class="text-gray-300 font-medium">Estimating complexity</span>
+                                <span class="text-gray-500"> — ~10^8 operations per second in C++, ~10^7 in Python. If your search space is smaller, brute force works. n ≤ 20: try 2^n subsets. n ≤ 10: try n! permutations. n ≤ 40: meet in the middle.</span>
+                            </div>
+                            
+                            
+                            
+                            <div class="text-xs">
+                                <span class="text-gray-300 font-medium">Iterative enumeration</span>
+                                <span class="text-gray-500"> — Nested loops to enumerate all combinations. For subsets: iterate bitmasks 0 to 2^n-1. For pairs: double loop. For triples: triple loop with pruning.</span>
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                        </div>
+                        <details class="mb-2">
+                            <summary class="text-xs text-gray-500 hover:text-gray-300 cursor-pointer">Common pitfalls</summary>
+                            <ul class="mt-1 text-xs text-red-400/70 space-y-0.5 list-disc list-inside">
+                                
+                                <li>Forgetting to prune — brute force without pruning is often too slow</li>
+                                
+                                <li>Miscounting complexity — n=25 is NOT feasible for 2^n in Python</li>
+                                
+                                <li>Not considering brute force at all — it&#39;s often the intended solution for small n</li>
+                                
+                                <li>Generating invalid states instead of pruning them early</li>
+                                
+                            </ul>
+                        </details>
+                    </div>
+                    
+                    
+                </div>
+            </details>
+            
+        </div>
+        
+    </div>
+    
+    <div class="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden
+        border-l-4 border-l-red-500
+        ">
+        <div class="p-5">
+            <div class="flex items-start justify-between gap-4">
+                <div class="flex-1">
+                    <div class="flex items-center gap-2 mb-2 flex-wrap">
+                        <span class="text-xs font-medium uppercase px-2 py-0.5 rounded
+                            bg-cf/20 text-cf
+                            ">
+                            CF
+                        </span>
+                    </div>
+                    <a href="https://codeforces.com/contest/1401/problem/C" target="_blank"
+                       class="text-lg font-semibold text-blue-400 hover:underline">
+                        Mere Array
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="border-t border-gray-800 px-5 py-3">
+            
+            <details class="">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                    Hint 1
+                </summary>
+                <div class="text-sm text-gray-300 mt-1 ml-4">Think about which elements can <strong>actually participate in swaps</strong>. The condition involves $\gcd$ equaling the global minimum $m = \min(a)$. What must be true about $a_i$ for $\gcd(a_i, m) = m$ to hold?</div>
+            </details>
+            
+            <details class="mt-2">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                    Hint 2
+                </summary>
+                <div class="text-sm text-gray-300 mt-1 ml-4">An element can be swapped with $m$ if and only if it is <strong>divisible by $m$</strong>. By using $m$ as an intermediary, any two elements divisible by $m$ can be rearranged freely. Elements <strong>not</strong> divisible by $m$ can never move — they must already be in their correct sorted position.</div>
+            </details>
+            
+            <details class="mt-2">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                    Hint 3
+                </summary>
+                <div class="text-sm text-gray-300 mt-1 ml-4">Algorithm: find $m = \min(a)$. Build the sorted version of the array. For every index $i$, if $a[i] \% m \neq 0$, check that $a[i]$ equals the sorted value at that position. If all such elements match, print <strong>YES</strong>; otherwise <strong>NO</strong>. Runs in $O(n \log n)$ for the sort.</div>
+            </details>
+            
+            <details class="mt-2">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                    Editorial
+                </summary>
+                <div class="text-sm text-gray-300 mt-1 ml-4"><a href="https://codeforces.com/search?query=editorial+1401" target="_blank" class="text-blue-400 hover:text-blue-300 underline">Read Editorial &rarr;</a></div>
+            </details>
+            
+
+            <!-- Why this problem -->
+            
+            <details class="mt-2">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">Why this problem?</summary>
+                <div class="text-sm text-gray-400 mt-1 ml-4">Mere Array teaches the elegant concept of using the <strong>minimum element as a pivot</strong> for constructive sorting — recognizing that the global minimum can be swapped adjacent to any element, effectively allowing free rearrangement. It builds strong intuition for <strong>invariant-based reasoning</strong> in constructive problems.</div>
+            </details>
+            
+
+            <!-- Prerequisites -->
+            
+            <details class="mt-2">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">Prerequisites</summary>
+                <div class="mt-2 ml-4 space-y-4">
+                    
+                    
+                    
+                    <div class="border-l-2 border-gray-700 pl-4">
+                        <h4 class="text-sm font-semibold text-gray-200 mb-1">Number Theory</h4>
+                        <p class="text-xs text-gray-400 mb-2">Number theory in CP is about properties of integers — primes, divisibility, modular arithmetic, and GCD. At CF 1200-1700, you need: fast primality testing, sieve, prime factorization, GCD/LCM, and modular arithmetic (especially mod exponentiation and inverse).</p>
+                        
+                        <div class="space-y-2 mb-2">
+                            
+                            
+                            
+                            
+                            
+                            
+                            <div class="text-xs">
+                                <span class="text-gray-300 font-medium">GCD and LCM</span>
+                                <span class="text-gray-500"> — GCD(a,b) using Euclidean algorithm: GCD(a,b) = GCD(b, a%b). LCM(a,b) = a/GCD(a,b) * b (divide first to avoid overflow).</span>
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                        </div>
+                        <details class="mb-2">
+                            <summary class="text-xs text-gray-500 hover:text-gray-300 cursor-pointer">Common pitfalls</summary>
+                            <ul class="mt-1 text-xs text-red-400/70 space-y-0.5 list-disc list-inside">
+                                
+                                <li>Integer overflow when multiplying before taking mod</li>
+                                
+                                <li>Forgetting modular inverse only works when GCD(a, m) = 1</li>
+                                
+                                <li>Off-by-one in sieve: start marking from p*p, not 2*p</li>
+                                
+                                <li>Computing LCM as a*b/GCD(a,b) instead of a/GCD(a,b)*b — overflows</li>
+                                
+                            </ul>
+                        </details>
+                    </div>
+                    
+                    
+                    
+                    
+                    <div class="border-l-2 border-gray-700 pl-4">
+                        <h4 class="text-sm font-semibold text-gray-200 mb-1">Constructive Algorithms</h4>
+                        <p class="text-xs text-gray-400 mb-2">Constructive problems ask you to BUILD a valid solution rather than compute an answer. No standard algorithm — you need pattern finding, invariants, or greedy strategies. Common on Codeforces, they test creative thinking more than algorithm knowledge.</p>
+                        
+                        <div class="space-y-2 mb-2">
+                            
+                            
+                            <div class="text-xs">
+                                <span class="text-gray-300 font-medium">What makes a problem constructive</span>
+                                <span class="text-gray-500"> — The problem says &#39;construct&#39;, &#39;find any&#39;, &#39;print a valid&#39;, or &#39;output -1 if impossible&#39;. You&#39;re building a solution, not counting or optimizing.</span>
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <div class="text-xs">
+                                <span class="text-gray-300 font-medium">Divide into cases</span>
+                                <span class="text-gray-500"> — Many constructive problems have 2-3 subcases (n even vs odd, modular conditions). Missing one subcase = Wrong Answer.</span>
+                            </div>
+                            
+                            
+                            
+                            
+                        </div>
+                        <details class="mb-2">
+                            <summary class="text-xs text-gray-500 hover:text-gray-300 cursor-pointer">Common pitfalls</summary>
+                            <ul class="mt-1 text-xs text-red-400/70 space-y-0.5 list-disc list-inside">
+                                
+                                <li>Overthinking — constructive problems often have simple solutions</li>
+                                
+                                <li>Missing subcases (especially n=1, n=2, or parity edge cases)</li>
+                                
+                                <li>Not checking impossibility before trying to construct</li>
+                                
+                                <li>Not testing on small cases before submitting</li>
+                                
+                            </ul>
+                        </details>
+                    </div>
+                    
+                    
+                    
+                    
+                    <div class="border-l-2 border-gray-700 pl-4">
+                        <h4 class="text-sm font-semibold text-gray-200 mb-1">Math (General)</h4>
+                        <p class="text-xs text-gray-400 mb-2">Math problems in CP require number sense, algebraic manipulation, and pattern recognition. At CF 1200-1700, common math topics: modular arithmetic, basic combinatorics, parity arguments, floor/ceil tricks, and recognizing mathematical formulas behind the problem.</p>
+                        
+                        <div class="space-y-2 mb-2">
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <div class="text-xs">
+                                <span class="text-gray-300 font-medium">Observation and pattern finding</span>
+                                <span class="text-gray-500"> — Many math problems require spotting a pattern from small cases. Compute answers for n=1,2,3,...,10, look for a formula. Often the answer is a simple closed-form expression.</span>
+                            </div>
+                            
+                            
+                        </div>
+                        <details class="mb-2">
+                            <summary class="text-xs text-gray-500 hover:text-gray-300 cursor-pointer">Common pitfalls</summary>
+                            <ul class="mt-1 text-xs text-red-400/70 space-y-0.5 list-disc list-inside">
+                                
+                                <li>Integer overflow in intermediate calculations</li>
+                                
+                                <li>Negative numbers with modulo — add m before taking mod</li>
+                                
+                                <li>Off-by-one in prefix sums</li>
+                                
+                                <li>Trusting a formula that works on examples without proving it</li>
+                                
+                            </ul>
+                        </details>
+                    </div>
+                    
+                    
+                </div>
+            </details>
+            
+        </div>
+        
+    </div>
+    
+    <div class="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden
+        border-l-4 border-l-red-500
+        ">
+        <div class="p-5">
+            <div class="flex items-start justify-between gap-4">
+                <div class="flex-1">
+                    <div class="flex items-center gap-2 mb-2 flex-wrap">
+                        <span class="text-xs font-medium uppercase px-2 py-0.5 rounded
+                            bg-atcoder/20 text-atcoder">
+                            AC
+                        </span>
+                    </div>
+                    <a href="https://atcoder.jp/contests/abc411/tasks/abc411_d" target="_blank"
+                       class="text-lg font-semibold text-blue-400 hover:underline">
+                        D. Conflict 2
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="border-t border-gray-800 px-5 py-3">
+            
+            <details class="">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                    Hint 1
+                </summary>
+                <div class="text-sm text-gray-300 mt-1 ml-4">Simulating every copy naively will be too slow — strings can grow huge through repeated copy-and-append cycles. Think about <strong>working backwards</strong> from the final state: what was the last query that set the server's string?</div>
+            </details>
+            
+            <details class="mt-2">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                    Hint 2
+                </summary>
+                <div class="text-sm text-gray-300 mt-1 ml-4">Trace the chain in reverse: the last type-3 query tells you which PC wrote to the server. That PC's string is whatever it copied from the server (type-1) plus all appends (type-2) after that copy. <strong>Recurse</strong>: what was the server's string at the time of that type-1 copy? This gives you a chain of segments to collect.</div>
+            </details>
+            
+            <details class="mt-2">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                    Hint 3
+                </summary>
+                <div class="text-sm text-gray-300 mt-1 ml-4">Walk backwards collecting append segments: find the last type-3 (say PC $p$ at time $t$), then find PC $p$'s last type-1 before $t$ (say time $t'$), gather all type-2 appends to $p$ between $t'$ and $t$, then repeat from $t'$. Reverse the collected segments at the end and concatenate. Each query and character is visited at most once, so this runs in $O(Q + \sum|s|)$.</div>
+            </details>
+            
+            <details class="mt-2">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                    Editorial
+                </summary>
+                <div class="text-sm text-gray-300 mt-1 ml-4"><a href="https://atcoder.jp/contests/abc411/editorial" target="_blank" class="text-blue-400 hover:text-blue-300 underline">Read Editorial &rarr;</a></div>
+            </details>
+            
+
+            <!-- Why this problem -->
+            
+            <details class="mt-2">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">Why this problem?</summary>
+                <div class="text-sm text-gray-400 mt-1 ml-4"><strong>WA</strong> · 4x</div>
+            </details>
+            
+
+            <!-- Prerequisites -->
+            
+            <details class="mt-2">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">Prerequisites</summary>
+                <div class="mt-2 ml-4 space-y-4">
+                    
+                    
+                    
+                    <div class="border-l-2 border-gray-700 pl-4">
+                        <h4 class="text-sm font-semibold text-gray-200 mb-1">Implementation</h4>
+                        <p class="text-xs text-gray-400 mb-2">Implementation problems have straightforward logic but tricky coding. No clever algorithm needed — just careful, correct code. The challenge is handling edge cases, parsing input correctly, and not making bugs in complex simulations.</p>
+                        
+                        <div class="space-y-2 mb-2">
+                            
+                            
+                            <div class="text-xs">
+                                <span class="text-gray-300 font-medium">Simulation</span>
+                                <span class="text-gray-500"> — Do exactly what the problem says, step by step. Read the problem statement carefully. Translate rules into code literally. Often the solution is just a careful simulation loop.</span>
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                        </div>
+                        <details class="mb-2">
+                            <summary class="text-xs text-gray-500 hover:text-gray-300 cursor-pointer">Common pitfalls</summary>
+                            <ul class="mt-1 text-xs text-red-400/70 space-y-0.5 list-disc list-inside">
+                                
+                                <li>Not reading the problem carefully enough — re-read before coding</li>
+                                
+                                <li>Overcomplicating the solution — if it&#39;s tagged &#39;implementation&#39;, keep it simple</li>
+                                
+                                <li>Not testing edge cases before submitting</li>
+                                
+                                <li>Using the wrong data type (int vs long long, float precision)</li>
+                                
+                            </ul>
+                        </details>
+                    </div>
+                    
+                    
+                    
+                    
+                    <div class="border-l-2 border-gray-700 pl-4">
+                        <h4 class="text-sm font-semibold text-gray-200 mb-1">Constructive Algorithms</h4>
+                        <p class="text-xs text-gray-400 mb-2">Constructive problems ask you to BUILD a valid solution rather than compute an answer. No standard algorithm — you need pattern finding, invariants, or greedy strategies. Common on Codeforces, they test creative thinking more than algorithm knowledge.</p>
+                        
+                        <div class="space-y-2 mb-2">
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <div class="text-xs">
+                                <span class="text-gray-300 font-medium">Work backwards</span>
+                                <span class="text-gray-500"> — Sometimes easier to start from the desired output and reverse-engineer the construction.</span>
+                            </div>
+                            
+                            
+                        </div>
+                        <details class="mb-2">
+                            <summary class="text-xs text-gray-500 hover:text-gray-300 cursor-pointer">Common pitfalls</summary>
+                            <ul class="mt-1 text-xs text-red-400/70 space-y-0.5 list-disc list-inside">
+                                
+                                <li>Overthinking — constructive problems often have simple solutions</li>
+                                
+                                <li>Missing subcases (especially n=1, n=2, or parity edge cases)</li>
+                                
+                                <li>Not checking impossibility before trying to construct</li>
+                                
+                                <li>Not testing on small cases before submitting</li>
+                                
+                            </ul>
+                        </details>
+                    </div>
+                    
+                    
+                </div>
+            </details>
+            
+        </div>
+        
+    </div>
+    
+    <div class="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden
+        border-l-4 border-l-red-500
+        ">
+        <div class="p-5">
+            <div class="flex items-start justify-between gap-4">
+                <div class="flex-1">
+                    <div class="flex items-center gap-2 mb-2 flex-wrap">
+                        <span class="text-xs font-medium uppercase px-2 py-0.5 rounded
+                            bg-cf/20 text-cf
+                            ">
+                            CF
+                        </span>
+                    </div>
+                    <a href="https://codeforces.com/contest/2178/problem/C" target="_blank"
+                       class="text-lg font-semibold text-blue-400 hover:underline">
+                        First or Second
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="border-t border-gray-800 px-5 py-3">
+            
+            <details class="">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                    Hint 1
+                </summary>
+                <div class="text-sm text-gray-300 mt-1 ml-4">Think about what "First or Second" means as a <strong>choice at each step</strong>. When you have a binary decision to make repeatedly, consider how each choice affects the overall result. Try small examples by hand — what patterns emerge when you always pick first vs. always pick second vs. mixing?</div>
+            </details>
+            
+            <details class="mt-2">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                    Hint 2
+                </summary>
+                <div class="text-sm text-gray-300 mt-1 ml-4">The key insight is that you can use a <strong>greedy or DP approach</strong> to track the optimal choice at each position. Define your state carefully: what information do you need to carry forward after making a choice? Often with binary choices, a simple $dp[i]$ tracking the best result up to position $i$ suffices, with transitions based on which option you pick.</div>
+            </details>
+            
+            <details class="mt-2">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                    Hint 3
+                </summary>
+                <div class="text-sm text-gray-300 mt-1 ml-4">Implement a <strong>linear pass</strong> where at each step you decide greedily (or via DP) whether to take the first or second option. Watch for <strong>edge cases</strong>: what happens when both choices give equal results? What about the boundaries (first and last elements)? The overall complexity should be $O(n)$ or $O(n \log n)$.</div>
+            </details>
+            
+            <details class="mt-2">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                    Editorial
+                </summary>
+                <div class="text-sm text-gray-300 mt-1 ml-4"><a href="https://codeforces.com/search?query=editorial+2178" target="_blank" class="text-blue-400 hover:text-blue-300 underline">Read Editorial &rarr;</a></div>
+            </details>
+            
+
+            <!-- Why this problem -->
+            
+            <details class="mt-2">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">Why this problem?</summary>
+                <div class="text-sm text-gray-400 mt-1 ml-4"><strong>RE</strong> · 6x</div>
+            </details>
+            
+
+            <!-- Prerequisites -->
+            
+            <details class="mt-2">
+                <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">Prerequisites</summary>
+                <div class="mt-2 ml-4 space-y-4">
+                    
+                    
+                    
+                    <div class="border-l-2 border-gray-700 pl-4">
+                        <h4 class="text-sm font-semibold text-gray-200 mb-1">Dynamic Programming</h4>
+                        <p class="text-xs text-gray-400 mb-2">DP solves problems by breaking them into overlapping subproblems and storing results to avoid recomputation. The two key requirements: optimal substructure (optimal solution contains optimal sub-solutions) and overlapping subproblems (same subproblem computed multiple times). At CF 1200-1700, you need classical DP patterns and the ability to define states and transitions.</p>
+                        
+                        <div class="space-y-2 mb-2">
+                            
+                            
+                            <div class="text-xs">
+                                <span class="text-gray-300 font-medium">State definition</span>
+                                <span class="text-gray-500"> — The hardest part of DP. Ask: what parameters uniquely describe a subproblem? Common states: (index, remaining capacity), (position, mask), (left, right). The number of distinct states determines memory and time.</span>
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <div class="text-xs">
+                                <span class="text-gray-300 font-medium">Transitions</span>
+                                <span class="text-gray-500"> — The recurrence relation: how does dp[state] relate to smaller states? Example: dp[i] = max(dp[i-1], dp[i-2] + val[i]) for house robber. Getting transitions right is the core skill.</span>
+                            </div>
+                            
+                            
+                            
+                            
+                        </div>
+                        <details class="mb-2">
+                            <summary class="text-xs text-gray-500 hover:text-gray-300 cursor-pointer">Common pitfalls</summary>
+                            <ul class="mt-1 text-xs text-red-400/70 space-y-0.5 list-disc list-inside">
+                                
+                                <li>Defining too many state parameters → MLE/TLE. Simplify the state.</li>
+                                
+                                <li>Forgetting base cases → wrong answer or infinite recursion</li>
+                                
+                                <li>Wrong transition order in bottom-up → using values not yet computed</li>
+                                
+                                <li>Not considering &#39;do nothing&#39; as a valid transition</li>
+                                
+                            </ul>
+                        </details>
+                    </div>
+                    
+                    
+                    
+                    
+                    <div class="border-l-2 border-gray-700 pl-4">
+                        <h4 class="text-sm font-semibold text-gray-200 mb-1">Greedy Algorithms</h4>
+                        <p class="text-xs text-gray-400 mb-2">Greedy makes the locally optimal choice at each step, hoping it leads to a globally optimal solution. It works when the problem has the greedy choice property (local optimum leads to global optimum) and optimal substructure. Faster than DP but only applicable when you can prove (or trust) the greedy strategy works.</p>
+                        
+                        <div class="space-y-2 mb-2">
+                            
+                            
+                            <div class="text-xs">
+                                <span class="text-gray-300 font-medium">The greedy strategy</span>
+                                <span class="text-gray-500"> — At each step, pick the option that looks best right now without considering future consequences. If the problem has the right structure, this gives the optimal answer.</span>
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                        </div>
+                        <details class="mb-2">
+                            <summary class="text-xs text-gray-500 hover:text-gray-300 cursor-pointer">Common pitfalls</summary>
+                            <ul class="mt-1 text-xs text-red-400/70 space-y-0.5 list-disc list-inside">
+                                
+                                <li>Assuming greedy works without verification — always test edge cases</li>
+                                
+                                <li>Wrong sorting criterion — the key to greedy is sorting by the RIGHT thing</li>
+                                
+                                <li>Greedy on examples ≠ greedy in general — find counterexamples</li>
+                                
+                                <li>Not handling ties in sorting — tiebreakers matter</li>
+                                
+                            </ul>
+                        </details>
+                    </div>
+                    
+                    
+                    
+                    
+                    <div class="border-l-2 border-gray-700 pl-4">
+                        <h4 class="text-sm font-semibold text-gray-200 mb-1">Implementation</h4>
+                        <p class="text-xs text-gray-400 mb-2">Implementation problems have straightforward logic but tricky coding. No clever algorithm needed — just careful, correct code. The challenge is handling edge cases, parsing input correctly, and not making bugs in complex simulations.</p>
+                        
+                        <div class="space-y-2 mb-2">
+                            
+                            
+                            
+                            
+                            <div class="text-xs">
+                                <span class="text-gray-300 font-medium">Edge cases</span>
+                                <span class="text-gray-500"> — n=0, n=1, empty input, maximum values, negative numbers, ties. Good implementation problems have tricky edge cases that catch sloppy code.</span>
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                            <div class="text-xs">
+                                <span class="text-gray-300 font-medium">Careful indexing</span>
+                                <span class="text-gray-500"> — 0-indexed vs 1-indexed, inclusive vs exclusive ranges, row-major vs column-major. Pick one convention and stick with it. Most bugs come from index confusion.</span>
+                            </div>
+                            
+                            
+                        </div>
+                        <details class="mb-2">
+                            <summary class="text-xs text-gray-500 hover:text-gray-300 cursor-pointer">Common pitfalls</summary>
+                            <ul class="mt-1 text-xs text-red-400/70 space-y-0.5 list-disc list-inside">
+                                
+                                <li>Not reading the problem carefully enough — re-read before coding</li>
+                                
+                                <li>Overcomplicating the solution — if it&#39;s tagged &#39;implementation&#39;, keep it simple</li>
+                                
+                                <li>Not testing edge cases before submitting</li>
+                                
+                                <li>Using the wrong data type (int vs long long, float precision)</li>
+                                
+                            </ul>
+                        </details>
+                    </div>
+                    
+                    
+                </div>
+            </details>
+            
+        </div>
+        
+    </div>
+    
+</div>
+
+
+    </main>
+
+    <footer class="text-center text-xs text-gray-700 py-8">
+        Generated by Practice on 2026-04-11
+    </footer>
+</body>
+</html>
