@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {delimiters: [{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cf: '#1890ff',
+                        atcoder: '#6f42c1',
+                        leetcode: '#ffa116',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --bg-deep: #0a0a0f;
+            --bg-surface: #12121a;
+            --bg-raised: #1a1a26;
+            --border: #2a2a3a;
+            --text-primary: #eeeef0;
+            --text-secondary: #a0a0b0;
+            --text-muted: #6a6a7e;
+        }
+        body { font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.5; background: var(--bg-deep); -webkit-font-smoothing: antialiased; }
+        .bg-gray-950 { background: var(--bg-deep) !important; }
+        .bg-gray-900 { background: var(--bg-surface) !important; }
+        .bg-gray-800 { background: var(--bg-raised) !important; }
+        .border-gray-800 { border-color: var(--border) !important; }
+        .text-gray-100 { color: var(--text-primary) !important; }
+        .text-gray-400 { color: var(--text-secondary) !important; }
+        .text-gray-500 { color: #8888a0 !important; }
+        .text-gray-600 { color: var(--text-muted) !important; }
+        .text-xs { font-size: 0.85rem !important; }
+        .text-sm { font-size: 0.95rem !important; }
+        .text-lg { font-size: 1.25rem !important; }
+        .text-2xl { font-size: 1.7rem !important; }
+        .font-mono { font-family: 'JetBrains Mono', monospace !important; }
+        .rounded-xl { border-radius: 16px !important; }
+        details .text-sm { font-size: 1.05rem !important; line-height: 1.55 !important; color: #d0d0dc !important; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen">
+    <nav class="bg-gray-900 border-b border-gray-800 sticky top-0 z-40">
+        <div class="max-w-3xl mx-auto px-3 sm:px-6 py-4 flex items-center justify-between">
+            <span class="text-2xl font-bold text-white tracking-tight">CP Trainer</span>
+            <span class="text-xs text-gray-600">2026-04-24</span>
+        </div>
+    </nav>
+
+    <main class="max-w-3xl mx-auto px-2 sm:px-6 py-4 sm:py-8">
+
+
+<div class="space-y-2">
+    
+    <details class="bg-gray-900 rounded-xl border border-gray-800 group">
+        <summary class="px-4 py-3 cursor-pointer select-none flex items-center justify-between text-sm font-semibold text-gray-300 hover:text-white">
+            <span>C1 <span class="text-gray-600 font-normal ml-1">· 2</span></span>
+            <span class="text-gray-600 text-xs group-open:rotate-90 transition-transform">▸</span>
+        </summary>
+        <div class="px-2 sm:px-3 pb-3 pt-1 space-y-2">
+            
+            <div class="bg-gray-950/40 rounded-lg border border-gray-800
+                border-l-4 border-l-red-500
+                ">
+                <div class="p-3 sm:p-4">
+                    <div class="flex items-center gap-2 mb-1.5 flex-wrap">
+                        <span class="text-xs font-medium uppercase px-2 py-0.5 rounded bg-cf/20 text-cf">
+                            CF
+                        </span>
+                    </div>
+                    <a href="https://codeforces.com/contest/1106/problem/D" target="_blank"
+                       class="text-lg font-semibold text-blue-400 hover:underline">
+                        Lunar New Year and a Wander
+                    </a>
+                    
+                    <div class="mt-3 space-y-1.5">
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 1
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">This problem asks for the <strong>lexicographically smallest</strong> traversal order of all nodes starting from node 1. Think about what choice you'd make at each step if you could 'teleport' freely between already-visited nodes — which unvisited node would you want to record next?</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 2
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Since you can revisit nodes freely, at any moment you can reach <strong>any unvisited node adjacent to the set of already-visited nodes</strong>. To minimize lexicographically, you should always pick the <strong>smallest-numbered reachable unvisited node</strong> next.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 3
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">This is a classic <strong>greedy + priority queue</strong> pattern, essentially a modified BFS where the queue is replaced by a <strong>min-heap</strong>. Use Python's `heapq` module — push neighbors as you discover them, always pop the smallest.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 4
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Algorithm: initialize a min-heap with node $1$ and a `visited` set. Repeatedly `heappop` the smallest node, append to the answer, then push all its unvisited neighbors (mark them visited <strong>when pushing</strong>, not when popping, to avoid duplicates in the heap). Complexity is $O((n+m) \log n)$.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 5
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Edge cases: the graph may have <strong>self-loops and multi-edges</strong> — the visited check handles both naturally. Build the adjacency list with `defaultdict(list)`. For $n, m \leq 10^5$, Python with `heapq` and `sys.stdin` for input is fast enough; print the result with `' '.join(map(str, ans))`.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Editorial
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800"><a href="https://codeforces.com/search?query=editorial+1106" target="_blank" class="text-blue-400 hover:text-blue-300 underline">Read Editorial &rarr;</a></div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">Why this problem?</summary>
+                            <div class="text-sm text-gray-400 mt-1.5 pl-3 border-l-2 border-gray-800">Lunar New Year and a Wander teaches a clean, reusable <strong>BFS/DFS with a priority queue</strong> pattern for lexicographically smallest traversal order — a technique that generalizes to many graph ordering problems. The solution is short, Python-friendly, and reinforces the idea of <strong>greedy exploration over a connected component</strong> without heavy casework.</div>
+                        </details>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="bg-gray-950/40 rounded-lg border border-gray-800
+                border-l-4 border-l-red-500
+                ">
+                <div class="p-3 sm:p-4">
+                    <div class="flex items-center gap-2 mb-1.5 flex-wrap">
+                        <span class="text-xs font-medium uppercase px-2 py-0.5 rounded bg-cf/20 text-cf">
+                            CF
+                        </span>
+                    </div>
+                    <a href="https://codeforces.com/contest/977/problem/E" target="_blank"
+                       class="text-lg font-semibold text-blue-400 hover:underline">
+                        Cyclic Components
+                    </a>
+                    
+                    <div class="mt-3 space-y-1.5">
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 1
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">This is a <strong>connected components</strong> problem on an undirected graph. Think about what structural property distinguishes a 'cycle component' from other connected components — it's not just about having a cycle, but about the component being <strong>exactly</strong> a simple cycle.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 2
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Look at the <strong>degree of each vertex</strong>. In a simple cycle of length $k \geq 3$, every vertex has exactly how many neighbors? Can you characterize a cycle component purely by a local degree condition on its vertices?</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 3
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800"><strong>Key insight</strong>: a connected component is a simple cycle if and only if <strong>every vertex in it has degree exactly 2</strong>. Any vertex with degree $\neq 2$ immediately disqualifies the whole component.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 4
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Use <strong>DSU (Union-Find)</strong> or <strong>BFS/DFS</strong> to find connected components, then for each component check whether all its vertices have degree 2. Count how many components pass this check. Complexity: $O(n + m)$ which is fine for $n, m \leq 2 \cdot 10^5$.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 5
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800"><strong>Implementation steps</strong>: (1) read edges and build an adjacency list plus a degree array; (2) run BFS/DFS from each unvisited vertex to collect its component; (3) for each component, check if <em>all</em> vertices have degree exactly 2 — if yes, increment the answer. <strong>Python tip</strong>: use <code>sys.setrecursionlimit</code> and iterative BFS with <code>collections.deque</code> to avoid recursion-depth issues on components up to $2 \cdot 10^5$ vertices.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Editorial
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800"><a href="https://codeforces.com/search?query=editorial+977" target="_blank" class="text-blue-400 hover:text-blue-300 underline">Read Editorial &rarr;</a></div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">Why this problem?</summary>
+                            <div class="text-sm text-gray-400 mt-1.5 pl-3 border-l-2 border-gray-800">This problem teaches the <strong>canonical DFS pattern</strong> for finding connected components and checking a structural property (every vertex has degree exactly 2) on each one — a reusable template that generalizes to many graph classification tasks. The solution is short, clean, and runs comfortably in Python, with no tricky casework or obscure insight required.</div>
+                        </details>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </details>
+    
+    <details class="bg-gray-900 rounded-xl border border-gray-800 group">
+        <summary class="px-4 py-3 cursor-pointer select-none flex items-center justify-between text-sm font-semibold text-gray-300 hover:text-white">
+            <span>C2 <span class="text-gray-600 font-normal ml-1">· 2</span></span>
+            <span class="text-gray-600 text-xs group-open:rotate-90 transition-transform">▸</span>
+        </summary>
+        <div class="px-2 sm:px-3 pb-3 pt-1 space-y-2">
+            
+            <div class="bg-gray-950/40 rounded-lg border border-gray-800
+                border-l-4 border-l-yellow-500">
+                <div class="p-3 sm:p-4">
+                    <div class="flex items-center gap-2 mb-1.5 flex-wrap">
+                        <span class="text-xs font-medium uppercase px-2 py-0.5 rounded bg-cf/20 text-cf">
+                            CF
+                        </span>
+                    </div>
+                    <a href="https://codeforces.com/contest/1881/problem/E" target="_blank"
+                       class="text-lg font-semibold text-blue-400 hover:underline">
+                        Block Sequence
+                    </a>
+                    
+                    <div class="mt-3 space-y-1.5">
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 1
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">This problem asks for the <strong>minimum deletions</strong> to reshape the array into blocks where each block starts with its length. Think about processing the array and making a <strong>decision at each position</strong> — this has a classic feel of an optimization problem over positions.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 2
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Consider iterating from <strong>right to left</strong>. At each index $i$, you face a binary choice: either <strong>delete</strong> $a[i]$ (cost $+1$), or <strong>use $a[i]$ as a block header</strong> of length $a[i]$, which consumes the next $a[i]$ elements as-is.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 3
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">This is a <strong>1D dynamic programming</strong> problem. Let $dp[i]$ = minimum deletions needed to make $a[i..n-1]$ beautiful. The transition has two cases: $dp[i] = dp[i+1] + 1$ (delete), or $dp[i] = dp[i + a[i] + 1]$ (keep as header, only valid if $i + a[i] + 1 \leq n$).</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 4
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Take the $\min$ of the two options. Base case: $dp[n] = 0$. Answer is $dp[0]$. Iterate $i$ from $n-1$ down to $0$ and process each test case in $O(n)$ — well within limits for $n \leq 2 \cdot 10^5$.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 5
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800"><strong>Python tip</strong>: use a list of size $n+1$ initialized to $0$, and be careful with the bound check $i + a[i] + 1 \leq n$ (if $a[i]$ is huge, only the delete option applies). Read input with <code>sys.stdin</code> for speed since $t$ can be up to $10^4$.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Editorial
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800"><a href="https://codeforces.com/search?query=editorial+1881" target="_blank" class="text-blue-400 hover:text-blue-300 underline">Read Editorial &rarr;</a></div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">Why this problem?</summary>
+                            <div class="text-sm text-gray-400 mt-1.5 pl-3 border-l-2 border-gray-800">Block Sequence teaches the <strong>classic DP-from-the-right pattern</strong> where f(i) = min(f(i+1)+1, f(i+a[i]+1)), a reusable template for 'delete or jump' problems. The state transition generalizes to many interval-segmentation and greedy-vs-DP decision problems, and Python handles n up to 2·10^5 comfortably here.</div>
+                        </details>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="bg-gray-950/40 rounded-lg border border-gray-800
+                border-l-4 border-l-yellow-500">
+                <div class="p-3 sm:p-4">
+                    <div class="flex items-center gap-2 mb-1.5 flex-wrap">
+                        <span class="text-xs font-medium uppercase px-2 py-0.5 rounded bg-cf/20 text-cf">
+                            CF
+                        </span>
+                    </div>
+                    <a href="https://codeforces.com/contest/1955/problem/D" target="_blank"
+                       class="text-lg font-semibold text-blue-400 hover:underline">
+                        Inaccurate Subsequence Search
+                    </a>
+                    
+                    <div class="mt-3 space-y-1.5">
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 1
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">This problem asks you to check every <strong>contiguous window</strong> of length $m$ in array $a$. With $n, m \leq 2 \cdot 10^5$, you need something better than recomputing from scratch for each window — think about what changes between consecutive windows.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 2
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">The key reframe: an array $c$ is 'good' if, counting multiplicities, $c$ and $b$ share at least $k$ common elements. Formally, $\sum_v \min(\text{cnt}_c[v], \text{cnt}_b[v]) \geq k$. Think about how to maintain this quantity efficiently as the window slides.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 3
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Use a <strong>sliding window</strong> with a frequency dictionary for the current window, plus a precomputed frequency dictionary for $b$. Maintain a running counter <strong>matches</strong> = number of elements in the window that currently 'count' toward $b$ (i.e., the $\min$ sum above).</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 4
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">When you <strong>add</strong> $a[r]$ to the window: if $\text{cnt}_c[a[r]] &lt; \text{cnt}_b[a[r]]$ before incrementing, then matches $+= 1$. When you <strong>remove</strong> $a[l]$: if $\text{cnt}_c[a[l]] \leq \text{cnt}_b[a[l]]$ before decrementing, then matches $-= 1$. Each window update is $O(1)$ giving $O(n)$ total.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 5
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Python tip: use <code>collections.defaultdict(int)</code> or <code>Counter</code> for $\text{cnt}_b$, and read input with <code>sys.stdin</code> (e.g., <code>input = sys.stdin.readline</code> or read all at once) — with $t \leq 10^4$ test cases and $n$ up to $2 \cdot 10^5$, slow I/O will TLE. Initialize the first window of size $m$, count its matches, then slide from $l=1$ to $n-m$ incrementing the answer whenever matches $\geq k$.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Editorial
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800"><a href="https://codeforces.com/search?query=editorial+1955" target="_blank" class="text-blue-400 hover:text-blue-300 underline">Read Editorial &rarr;</a></div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">Why this problem?</summary>
+                            <div class="text-sm text-gray-400 mt-1.5 pl-3 border-l-2 border-gray-800"><strong>Inaccurate Subsequence Search</strong> teaches the <strong>sliding window with frequency matching</strong> pattern — maintain a window of size m, track how many elements currently match the required multiset, and update in O(1) per shift. This is a reusable template that shows up in countless string/array problems, with a clean implementation and no casework.</div>
+                        </details>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </details>
+    
+    <details class="bg-gray-900 rounded-xl border border-gray-800 group">
+        <summary class="px-4 py-3 cursor-pointer select-none flex items-center justify-between text-sm font-semibold text-gray-300 hover:text-white">
+            <span>C3 <span class="text-gray-600 font-normal ml-1">· 2</span></span>
+            <span class="text-gray-600 text-xs group-open:rotate-90 transition-transform">▸</span>
+        </summary>
+        <div class="px-2 sm:px-3 pb-3 pt-1 space-y-2">
+            
+            <div class="bg-gray-950/40 rounded-lg border border-gray-800
+                border-l-4 border-l-yellow-500">
+                <div class="p-3 sm:p-4">
+                    <div class="flex items-center gap-2 mb-1.5 flex-wrap">
+                        <span class="text-xs font-medium uppercase px-2 py-0.5 rounded bg-atcoder/20 text-atcoder">
+                            AT
+                        </span>
+                    </div>
+                    <a href="https://atcoder.jp/contests/abc219/tasks/abc219_d" target="_blank"
+                       class="text-lg font-semibold text-blue-400 hover:underline">
+                        D. Strange Lunchbox
+                    </a>
+                    
+                    <div class="mt-3 space-y-1.5">
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 1
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">This problem asks for the <strong>minimum number of items</strong> to pick from a set such that two independent sums each meet a threshold. With $N \leq 300$ and thresholds $X, Y \leq 300$, think about what kind of <strong>state</strong> you could track as you decide to take or skip each lunchbox.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 2
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Greedy won't work here because maximizing takoyaki and taiyaki can conflict. This is a classic <strong>knapsack-style DP</strong> — but instead of minimizing weight, you're minimizing <strong>count</strong> while satisfying <strong>two capacity constraints</strong> simultaneously.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 3
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Let $dp[j][k]$ = minimum number of lunchboxes needed to get at least $j$ takoyaki and at least $k$ taiyaki. Key trick: <strong>cap values at $X$ and $Y$</strong> respectively — anything beyond the target is equivalent to hitting the target exactly, which keeps the state space at $O(XY)$.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 4
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Iterate over each lunchbox $i$ and update the DP in <strong>reverse order</strong> (like 0/1 knapsack) so each item is used at most once. Transition: $dp[\min(j+A_i, X)][\min(k+B_i, Y)] = \min(\text{old}, dp[j][k] + 1)$. Initialize $dp[0][0] = 0$, everything else to infinity.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 5
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">The answer is $dp[X][Y]$; print $-1$ if it's still infinity. Total complexity is $O(N \cdot X \cdot Y) = O(300^3) = 2.7 \times 10^7$ — <strong>Python may be tight</strong>, so use a flat 1D list indexed as $j \cdot (Y+1) + k$ and avoid nested dict/list overhead. Iterate $j$ from $X$ down to $0$ and $k$ from $Y$ down to $0$ inside the item loop.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Editorial
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800"><a href="https://atcoder.jp/contests/abc219/editorial" target="_blank" class="text-blue-400 hover:text-blue-300 underline">Read Editorial &rarr;</a></div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">Why this problem?</summary>
+                            <div class="text-sm text-gray-400 mt-1.5 pl-3 border-l-2 border-gray-800"><strong>Strange Lunchbox</strong> teaches <strong>2D knapsack DP</strong> — minimize items picked subject to two independent resource constraints, a clean generalization of the classic knapsack that generalizes to any multi-dimensional coverage problem. The pattern (state = (taken, sum_A, sum_B), transition = take/skip) is reusable, Python-friendly, and has a textbook editorial with no casework.</div>
+                        </details>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="bg-gray-950/40 rounded-lg border border-gray-800
+                border-l-4 border-l-yellow-500">
+                <div class="p-3 sm:p-4">
+                    <div class="flex items-center gap-2 mb-1.5 flex-wrap">
+                        <span class="text-xs font-medium uppercase px-2 py-0.5 rounded bg-atcoder/20 text-atcoder">
+                            AT
+                        </span>
+                    </div>
+                    <a href="https://atcoder.jp/contests/abc367/tasks/abc367_d" target="_blank"
+                       class="text-lg font-semibold text-blue-400 hover:underline">
+                        D. Pedometer
+                    </a>
+                    
+                    <div class="mt-3 space-y-1.5">
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 1
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">This is a <strong>counting problem</strong> on a circular array. Think about how to express the clockwise distance from $s$ to $t$ in terms of a <strong>prefix sum</strong> of the step array $A$.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 2
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Double the array or unroll one loop around the circle. Let $P_i$ be the prefix sum of $A$. Then the clockwise distance from $s$ to $t$ (with $s \neq t$) is $P_{t-1} - P_{s-1}$ when $s &lt; t$, and $P_{N} - P_{s-1} + P_{t-1}$ when $s &gt; t$. You need this distance to be $\equiv 0 \pmod{M}$.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 3
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">The condition reduces to $P_{t-1} \equiv P_{s-1} \pmod{M}$ for the "straight" case, and a similar congruence (shifted by the total loop sum $P_N \bmod M$) for the wrap-around case. Key insight: <strong>count pairs of prefix sums with equal residues mod $M$</strong>, being careful about the circular wrap.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 4
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Cleaner formulation: compute $P_0, P_1, \dots, P_{N-1}$ (prefixes of length $N$, since walking a full loop $s \to s$ is excluded). The distance from $s$ to $t$ going clockwise equals $(P_{t-1} - P_{s-1}) \bmod P_N$ along the doubled array — so you just need $(P_{t-1} - P_{s-1}) \equiv 0 \pmod M$ where indices are taken mod $N$ and $t \neq s$.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 5
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Algorithm: take all $P_i \bmod M$ for $i = 0, 1, \dots, N-1$, count frequency of each residue with a <strong>Counter / dict</strong>, then for each residue with count $c$ add $c \cdot (c-1)$ (ordered pairs, since $(s,t)$ is ordered and $s \neq t$). This runs in $O(N)$ — well within limits for $N \leq 2 \times 10^5$.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 6
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Careful edge cases: $M$ can be up to $10^6$ so use a dict not a list-of-size-$M$ if you want, but both work. Use <strong>sys.stdin</strong> for fast input in Python. Don't forget that total loop length $P_N$ itself may or may not be divisible by $M$ — the formulation above using only $P_0 \dots P_{N-1}$ handles this correctly because we never consider $s = t$ (which would require a full loop).</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Editorial
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800"><a href="https://atcoder.jp/contests/abc367/editorial" target="_blank" class="text-blue-400 hover:text-blue-300 underline">Read Editorial &rarr;</a></div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">Why this problem?</summary>
+                            <div class="text-sm text-gray-400 mt-1.5 pl-3 border-l-2 border-gray-800">Teaches the classic <strong>prefix sums on a circular array</strong> pattern combined with <strong>counting pairs by residue class</strong> — a reusable technique that shows up constantly in range-sum problems. The solution is clean O(N) with a frequency array, no casework, and Python-friendly.</div>
+                        </details>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </details>
+    
+    <details class="bg-gray-900 rounded-xl border border-gray-800 group">
+        <summary class="px-4 py-3 cursor-pointer select-none flex items-center justify-between text-sm font-semibold text-gray-300 hover:text-white">
+            <span>C4 <span class="text-gray-600 font-normal ml-1">· 2</span></span>
+            <span class="text-gray-600 text-xs group-open:rotate-90 transition-transform">▸</span>
+        </summary>
+        <div class="px-2 sm:px-3 pb-3 pt-1 space-y-2">
+            
+            <div class="bg-gray-950/40 rounded-lg border border-gray-800
+                border-l-4 border-l-yellow-500">
+                <div class="p-3 sm:p-4">
+                    <div class="flex items-center gap-2 mb-1.5 flex-wrap">
+                        <span class="text-xs font-medium uppercase px-2 py-0.5 rounded bg-leetcode/20 text-leetcode">
+                            LC
+                        </span>
+                    </div>
+                    <a href="https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/" target="_blank"
+                       class="text-lg font-semibold text-blue-400 hover:underline">
+                        Shortest Path in a Grid with Obstacles Elimination
+                    </a>
+                    
+                    <div class="mt-3 space-y-1.5">
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 1
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">This is a <strong>shortest path</strong> problem on a grid, but with a twist: you have a budget of $k$ obstacle eliminations. Think about what makes the standard grid-shortest-path approach insufficient here, and what extra information you need to track.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 2
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Since all edge weights are 1, <strong>BFS</strong> gives shortest paths. But the same cell can be reached via different paths with different numbers of eliminations remaining — visiting $(r,c)$ with more $k$ left is strictly better than with less, so naive 'visited' marking breaks.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 3
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Expand the state: instead of just $(r, c)$, use $(r, c, k_{remaining})$. Run <strong>BFS over this 3D state space</strong> — first time you pop $(m-1, n-1, *)$ is the answer.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 4
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">For the visited set, track the <strong>maximum $k$ remaining</strong> ever seen at each $(r,c)$. Skip a state if you've already visited that cell with $\geq$ that many eliminations left — it can't lead to anything better. Total states are $O(m \cdot n \cdot k)$, so complexity is $O(m \cdot n \cdot k)$.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 5
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800"><strong>Optimization</strong>: the shortest possible path is $m + n - 2$ steps, which crosses at most $m + n - 3$ obstacles. If $k \geq m + n - 2$, you can just return $m + n - 2$ directly — saves time when $k$ is large relative to grid size.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Editorial
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800"><strong>Implementation</strong>: use <code>collections.deque</code>, push $(0, 0, k, 0)$ for $(r, c, remaining, steps)$. For each neighbor, compute $new\_k = remaining - grid[nr][nc]$; skip if $new\_k &lt; 0$ or if <code>seen[nr][nc] >= new_k</code>. Otherwise update <code>seen[nr][nc] = new_k</code> and enqueue.</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">Why this problem?</summary>
+                            <div class="text-sm text-gray-400 mt-1.5 pl-3 border-l-2 border-gray-800">Teaches <strong>BFS on an augmented state space</strong> — the classic trick of adding a dimension (remaining eliminations) to the grid so shortest-path still works when you have a limited resource. This <strong>state = (position, resource)</strong> pattern generalizes to many constrained shortest-path problems and has a clean, casework-free implementation.</div>
+                        </details>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="bg-gray-950/40 rounded-lg border border-gray-800
+                border-l-4 border-l-yellow-500">
+                <div class="p-3 sm:p-4">
+                    <div class="flex items-center gap-2 mb-1.5 flex-wrap">
+                        <span class="text-xs font-medium uppercase px-2 py-0.5 rounded bg-leetcode/20 text-leetcode">
+                            LC
+                        </span>
+                    </div>
+                    <a href="https://leetcode.com/problems/minimum-number-of-taps-to-open-to-water-a-garden/" target="_blank"
+                       class="text-lg font-semibold text-blue-400 hover:underline">
+                        Minimum Number of Taps to Open to Water a Garden
+                    </a>
+                    
+                    <div class="mt-3 space-y-1.5">
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 1
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">This is an <strong>interval covering</strong> problem in disguise. Each tap defines a coverage interval $[i - r_i, i + r_i]$, and you need to cover $[0, n]$ using the minimum number of intervals. Think about what classical problem this maps to.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 2
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">The standard reduction is to the <strong>Minimum Number of Jumps / Interval Covering</strong> problem. Transform each tap into an interval, then solve: given a set of intervals, cover $[0, n]$ with the fewest. Clip intervals to $[0, n]$ since negative reach doesn't help.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 3
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Use a <strong>greedy sweep</strong>: for each starting position, know the <strong>farthest right endpoint</strong> reachable among intervals whose left endpoint $\leq$ current position. Precompute an array $\text{maxReach}[i]$ = max right endpoint of any interval starting at or before $i$. This gives $O(n)$ after preprocessing.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 4
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Concretely: build $\text{maxReach}$ of size $n+1$ where $\text{maxReach}[\max(0, i - r_i)] = \max(\text{maxReach}[\max(0, i - r_i)], i + r_i)$ for each tap. Then simulate jumps like <strong>LeetCode 45 (Jump Game II)</strong>: track <code>current_end</code> (farthest you can reach with taps opened so far) and <code>next_end</code> (farthest reachable by extending one more tap).</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 5
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Walk $i$ from $0$ to $n-1$: update <code>next_end = max(next_end, maxReach[i])</code>. When $i$ reaches <code>current_end</code>, you must open another tap, so increment the count and set <code>current_end = next_end</code>. If <code>current_end</code> never advances past $i$ (i.e., <code>next_end == i</code> at a jump point), return $-1$.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Editorial
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800"><strong>Edge cases</strong>: taps with $r_i = 0$ contribute nothing useful (interval $[i,i]$ only covers a single point, not a segment). A DP alternative exists ($dp[i]$ = min taps to water $[0, i]$, transition over intervals covering $i$), but the greedy is $O(n)$ vs $O(n^2)$ DP — prefer greedy given $n \leq 10^4$ is fine either way but greedy is cleaner.</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">Why this problem?</summary>
+                            <div class="text-sm text-gray-400 mt-1.5 pl-3 border-l-2 border-gray-800">Teaches the classic <strong>interval greedy / jump-game DP</strong> pattern — transform each tap into an interval, then either greedily extend the farthest reach or run a clean 1D DP. The reframing from 'taps' to 'minimum intervals to cover [0,n]' is a <strong>reusable modeling trick</strong> that shows up repeatedly in range-cover problems.</div>
+                        </details>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </details>
+    
+    <details class="bg-gray-900 rounded-xl border border-gray-800 group">
+        <summary class="px-4 py-3 cursor-pointer select-none flex items-center justify-between text-sm font-semibold text-gray-300 hover:text-white">
+            <span>C5 <span class="text-gray-600 font-normal ml-1">· 2</span></span>
+            <span class="text-gray-600 text-xs group-open:rotate-90 transition-transform">▸</span>
+        </summary>
+        <div class="px-2 sm:px-3 pb-3 pt-1 space-y-2">
+            
+            <div class="bg-gray-950/40 rounded-lg border border-gray-800
+                border-l-4 border-l-yellow-500">
+                <div class="p-3 sm:p-4">
+                    <div class="flex items-center gap-2 mb-1.5 flex-wrap">
+                        <span class="text-xs font-medium uppercase px-2 py-0.5 rounded bg-cf/20 text-cf">
+                            CF
+                        </span>
+                    </div>
+                    <a href="https://codeforces.com/contest/1363/problem/B" target="_blank"
+                       class="text-lg font-semibold text-blue-400 hover:underline">
+                        Subsequence Hate
+                    </a>
+                    
+                    <div class="mt-3 space-y-1.5">
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 1
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Think about what a <strong>good string</strong> actually looks like structurally. If it can't contain "010" or "101" as a subsequence, what does that force about the arrangement of 0s and 1s?</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 2
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">A good string must be of the form <strong>all same characters</strong>, or <strong>all 0s followed by all 1s</strong>, or <strong>all 1s followed by all 0s</strong>. Any other pattern would create an alternating subsequence of length 3.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 3
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">So you need to find a <strong>split point</strong> $i$ where everything left of $i$ becomes one character and everything right becomes the other (or the same). Try every split $i \in [0, n]$ and compute the flips needed.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 4
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Precompute <strong>prefix sums</strong> of 0s and 1s so each split can be evaluated in $O(1)$. For each $i$, cost = (0s in left + 1s in right) for the "0...01...1" shape, and similarly for "1...10...0"; take the minimum over all splits and both shapes. Total complexity $O(n)$ per test case.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Editorial
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800"><a href="https://codeforces.com/search?query=editorial+1363" target="_blank" class="text-blue-400 hover:text-blue-300 underline">Read Editorial &rarr;</a></div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">Why this problem?</summary>
+                            <div class="text-sm text-gray-400 mt-1.5 pl-3 border-l-2 border-gray-800"><strong>High-prevalence maintenance</strong> — <em>implementation</em> appears in 27% of CF problems. <strong>Subsequence Hate</strong> teaches a clean, reusable <strong>prefix-suffix partition</strong> pattern: iterate over every split point and combine precomputed prefix/suffix counts in O(n). This O(n) two-pointer/prefix-sum framing shows up constantly in harder problems, making it far more transferable than the ad-hoc observations the other candidates rely on.</div>
+                        </details>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="bg-gray-950/40 rounded-lg border border-gray-800
+                border-l-4 border-l-yellow-500">
+                <div class="p-3 sm:p-4">
+                    <div class="flex items-center gap-2 mb-1.5 flex-wrap">
+                        <span class="text-xs font-medium uppercase px-2 py-0.5 rounded bg-cf/20 text-cf">
+                            CF
+                        </span>
+                    </div>
+                    <a href="https://codeforces.com/contest/1470/problem/A" target="_blank"
+                       class="text-lg font-semibold text-blue-400 hover:underline">
+                        Strange Birthday Party
+                    </a>
+                    
+                    <div class="mt-3 space-y-1.5">
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 1
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Think about this as an <strong>assignment problem</strong>: for each friend you either spend $c_{k_i}$ (cash) or spend $c_j$ for some unused $j \leq k_i$ (present). Since all $c_j$ values are sorted, the presents you'd ever want to actually buy are the <strong>cheapest ones</strong> ($c_1, c_2, \ldots$). The question becomes: <em>which friends</em> should receive those cheap presents?</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 2
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Consider a friend with a large $k_i$ vs. one with small $k_i$. The cash option costs $c_{k_i}$, so a friend with large $k_i$ has a much <strong>higher cash cost</strong> — giving them a cheap present saves more money. This suggests a <strong>greedy</strong> strategy sorted by $k_i$.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 3
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800"><strong>Sort the $k_i$ values in descending order</strong>. Then for the $i$-th friend in that order (0-indexed), consider giving them present $i+1$ — that's the $(i+1)$-th cheapest present, cost $c_i$ (0-indexed). Use the present only if $c_i &lt; c_{k_i - 1}$; otherwise pay cash $c_{k_i - 1}$.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 4
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Implementation: read inputs, sort $k$ descending, loop with index $i$: if $i &lt; m$ take $\min(c[i],\ c[k_i - 1])$, else just add $c[k_i - 1]$. Watch out for <strong>0- vs 1-indexing</strong> on $c$, and use <code>sys.stdin</code> for fast I/O since $n, m$ sum to $3 \cdot 10^5$ across test cases. Total complexity $O(n \log n)$ per test case.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Editorial
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800"><a href="https://codeforces.com/search?query=editorial+1470" target="_blank" class="text-blue-400 hover:text-blue-300 underline">Read Editorial &rarr;</a></div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">Why this problem?</summary>
+                            <div class="text-sm text-gray-400 mt-1.5 pl-3 border-l-2 border-gray-800"><strong>High-prevalence maintenance</strong> — <em>greedy</em> appears in 31% of CF problems. <strong>Strange Birthday Party</strong> teaches the classic <strong>sort-and-assign greedy</strong>: pair the most expensive guests with the cheapest gifts so the remaining (cheapest) guests pay their own discounted price. It's a reusable exchange-argument pattern that shows up constantly in cost-minimization problems, with a clean O(n log n) solution that's trivial in Python.</div>
+                        </details>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </details>
+    
+    <details class="bg-gray-900 rounded-xl border border-gray-800 group">
+        <summary class="px-4 py-3 cursor-pointer select-none flex items-center justify-between text-sm font-semibold text-gray-300 hover:text-white">
+            <span>C6 <span class="text-gray-600 font-normal ml-1">· 1</span></span>
+            <span class="text-gray-600 text-xs group-open:rotate-90 transition-transform">▸</span>
+        </summary>
+        <div class="px-2 sm:px-3 pb-3 pt-1 space-y-2">
+            
+            <div class="bg-gray-950/40 rounded-lg border border-gray-800
+                border-l-4 border-l-red-500
+                ">
+                <div class="p-3 sm:p-4">
+                    <div class="flex items-center gap-2 mb-1.5 flex-wrap">
+                        <span class="text-xs font-medium uppercase px-2 py-0.5 rounded bg-cf/20 text-cf">
+                            CF
+                        </span>
+                    </div>
+                    <a href="https://codeforces.com/contest/2193/problem/E" target="_blank"
+                       class="text-lg font-semibold text-blue-400 hover:underline">
+                        Product Queries
+                    </a>
+                    
+                    <div class="mt-3 space-y-1.5">
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 1
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Think about this as a <strong>shortest path problem</strong>, not just a DP — the tags hint at it. Each reachable product is a node, and multiplying by an array element is an edge of weight 1. What's the source and what are the targets?</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 2
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Use <strong>BFS</strong> over values $1 \ldots n$. Initialize $dist[a_i] = 1$ for every element $a_i$ in the array (since selecting one element gives that product with 1 pick). Then expand: from a value $v$ with $dist[v] = d$, transition to $v \cdot a$ for each <strong>distinct</strong> $a$ in the array, provided $v \cdot a \leq n$.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 3
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Deduplicate the array first — only distinct values matter for transitions. Sort them, and when expanding $v$, stop as soon as $v \cdot a &gt; n$. By the <strong>harmonic bound</strong> $\sum_{v=1}^{n} n/v = O(n \log n)$, the total work is manageable. Watch out: if $1$ is in the array, $dist[1] = 1$, but $v \cdot 1 = v$ is a self-loop — skip $a = 1$ in expansion (it never improves distance).</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 4
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Implementation in Python: use a $dist$ array of size $n+1$ filled with $-1$, a $\texttt{collections.deque}$, seed with all distinct $a_i$ at distance $1$, then standard BFS. Answer for query $i$ is $dist[i]$. Use $\texttt{sys.stdin}$ for I/O and $\texttt{'\n'.join}$ for output — with $t \le 10^4$ and $\sum n \le 3 \cdot 10^5$, Python I/O is the main bottleneck.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Editorial
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800"><a href="https://codeforces.com/search?query=editorial+2193" target="_blank" class="text-blue-400 hover:text-blue-300 underline">Read Editorial &rarr;</a></div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">Why this problem?</summary>
+                            <div class="text-sm text-gray-400 mt-1.5 pl-3 border-l-2 border-gray-800"><strong>TLE</strong> · 1x</div>
+                        </details>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </details>
+    
+</div>
+
+
+    </main>
+
+    <footer class="text-center text-xs text-gray-700 py-8">
+        Generated by Practice on 2026-04-24
+    </footer>
+</body>
+</html>
