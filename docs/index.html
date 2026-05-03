@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {delimiters: [{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cf: '#1890ff',
+                        atcoder: '#6f42c1',
+                        leetcode: '#ffa116',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --bg-deep: #0a0a0f;
+            --bg-surface: #12121a;
+            --bg-raised: #1a1a26;
+            --border: #2a2a3a;
+            --text-primary: #eeeef0;
+            --text-secondary: #a0a0b0;
+            --text-muted: #6a6a7e;
+        }
+        body { font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.5; background: var(--bg-deep); -webkit-font-smoothing: antialiased; }
+        .bg-gray-950 { background: var(--bg-deep) !important; }
+        .bg-gray-900 { background: var(--bg-surface) !important; }
+        .bg-gray-800 { background: var(--bg-raised) !important; }
+        .border-gray-800 { border-color: var(--border) !important; }
+        .text-gray-100 { color: var(--text-primary) !important; }
+        .text-gray-400 { color: var(--text-secondary) !important; }
+        .text-gray-500 { color: #8888a0 !important; }
+        .text-gray-600 { color: var(--text-muted) !important; }
+        .text-xs { font-size: 0.85rem !important; }
+        .text-sm { font-size: 0.95rem !important; }
+        .text-lg { font-size: 1.25rem !important; }
+        .text-2xl { font-size: 1.7rem !important; }
+        .font-mono { font-family: 'JetBrains Mono', monospace !important; }
+        .rounded-xl { border-radius: 16px !important; }
+        details .text-sm { font-size: 1.05rem !important; line-height: 1.55 !important; color: #d0d0dc !important; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen">
+    <nav class="bg-gray-900 border-b border-gray-800 sticky top-0 z-40">
+        <div class="max-w-3xl mx-auto px-3 sm:px-6 py-4 flex items-center justify-between">
+            <span class="text-2xl font-bold text-white tracking-tight">CP Trainer</span>
+            <span class="text-xs text-gray-600">2026-05-03</span>
+        </div>
+    </nav>
+
+    <main class="max-w-3xl mx-auto px-2 sm:px-6 py-4 sm:py-8">
+
+
+<div class="space-y-2">
+    
+    <details class="bg-gray-900 rounded-xl border border-gray-800 group">
+        <summary class="px-4 py-3 cursor-pointer select-none flex items-center justify-between text-sm font-semibold text-gray-300 hover:text-white">
+            <span>C1</span>
+            <span class="flex items-center gap-3 shrink-0">
+                <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                <span class="text-gray-600 text-xs group-open:rotate-90 transition-transform">▸</span>
+            </span>
+        </summary>
+        <div class="px-2 sm:px-3 pb-3 pt-1 space-y-2">
+            
+            <div class="bg-gray-950/40 rounded-lg border border-gray-800
+                border-l-4 border-l-red-500
+                ">
+                <div class="p-3 sm:p-4">
+                    <a href="https://codeforces.com/contest/1433/problem/D" target="_blank"
+                       class="text-lg font-semibold text-blue-400 hover:underline">
+                        Districts Connection
+                    </a>
+                    
+                    <div class="mt-3 space-y-1.5">
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 1
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">When you're free to design the tree's shape, what's the simplest topology that connects $n$ nodes with $n-1$ edges? Try drawing it for tiny examples and see what could possibly go wrong with the gang constraint.</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 2
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Suppose you pick district $1$ as a single hub and connect everyone else to it. The only edges that break the rule are those going to other districts in gang $a_1$ — so the question reduces to: how do we attach <strong>those</strong> leftover districts?</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 3
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Look for any district $j$ whose gang differs from $a_1$. If such a $j$ exists, every leftover district (same gang as $1$) can be hooked to $j$ instead — two stars sharing the trunk edge $(1, j)$. If <strong>no</strong> such $j$ exists, all districts share one gang and the answer is <strong>NO</strong>.</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 4
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Algorithm in $O(n)$: read the array, find the first index $j &gt; 1$ with $a_j \neq a_1$; if none, print NO. Otherwise print edge $(1, j)$, then for each $k \neq 1, j$ print $(1, k)$ if $a_k \neq a_1$ else $(j, k)$. That's exactly $n-1$ edges and every edge crosses gangs by construction.</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 5
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Python sketch: use <strong>sys.stdin</strong> for input over $t \leq 500$ cases, build the edge list, and emit with <strong>'\n'.join</strong> — per-line print is slow enough to matter here. Edge case: $n=2$ with $a_1 \neq a_2$ is YES with the single edge $(1,2)$; $n=2$ with $a_1 = a_2$ is NO.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-amber-500 hover:text-amber-400 cursor-pointer">Style</summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-amber-900"><strong>Canonical pattern:</strong> Constructive spanning tree — when you must build a tree under a local constraint, a star (one center connected to everything else) is almost always the first shape to try.<br><strong>Twist:</strong> The center can't talk to its own gang, so a single star fails when one gang owns every district except possibly one — you need to detect that case and otherwise patch the leftover same-gang nodes through a second hub.<br><strong>Builds:</strong> Recognizing when the answer is a fixed simple structure plus a small repair, rather than a general graph search.<br><strong>Platform idiom:</strong> Classic CF ad-hoc constructive — small observation collapses the problem to printing edges.</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Editorial
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800"><a href="https://codeforces.com/search?query=editorial+1433" target="_blank" class="text-blue-400 hover:text-blue-300 underline">Read Editorial &rarr;</a></div>
+                        </details>
+                        
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </details>
+    
+    <details class="bg-gray-900 rounded-xl border border-gray-800 group">
+        <summary class="px-4 py-3 cursor-pointer select-none flex items-center justify-between text-sm font-semibold text-gray-300 hover:text-white">
+            <span>C2</span>
+            <span class="flex items-center gap-3 shrink-0">
+                <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                <span class="text-gray-600 text-xs group-open:rotate-90 transition-transform">▸</span>
+            </span>
+        </summary>
+        <div class="px-2 sm:px-3 pb-3 pt-1 space-y-2">
+            
+            <div class="bg-gray-950/40 rounded-lg border border-gray-800
+                border-l-4 border-l-yellow-500">
+                <div class="p-3 sm:p-4">
+                    <a href="https://codeforces.com/contest/1542/problem/B" target="_blank"
+                       class="text-lg font-semibold text-blue-400 hover:underline">
+                        Plus and Multiply
+                    </a>
+                    
+                    <div class="mt-3 space-y-1.5">
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 1
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Run the operations by hand for $a=3, b=6$ and list the first ~10 elements. Try writing each one as <strong>(something involving $a$) + (something involving $b$)</strong> — does a uniform shape jump out?</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 2
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Trace what each operation does to such a shape: if a number looks like '<strong>power-of-$a$ core</strong> plus <strong>multiple of $b$</strong>', then $+b$ only bumps the multiple, while $\times a$ bumps the power but <em>also</em> rescales the multiple — which is still a multiple of $b$. So the shape is preserved.</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 3
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">This means every reachable element can be written as $a^k + m \cdot b$ for some integers $k \geq 0$ and $m \geq 0$. So $n$ is in the set <strong>iff there exists $k \geq 0$ with $a^k \leq n$ and $(n - a^k) \bmod b = 0$</strong>.</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 4
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Iterate $k = 0, 1, 2, \ldots$ while $a^k \leq n$ and check the divisibility — at most $\log_a n \leq 30$ steps per query, so $O(\log n)$ overall. <strong>Critical edge case: $a = 1$</strong>. Then $a^k = 1$ forever and your loop won't terminate — handle it separately by just checking $(n-1) \bmod b = 0$.</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 5
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Python sketch: read all input with <code>sys.stdin.buffer.read().split()</code>, accumulate answers in a list, output via <code>sys.stdout.write('\n'.join(out))</code> since $t \leq 10^5$. Core logic:<br><code>def solve(n,a,b):<br>&nbsp;&nbsp;if a==1: return (n-1)%b==0<br>&nbsp;&nbsp;p=1<br>&nbsp;&nbsp;while p<=n:<br>&nbsp;&nbsp;&nbsp;&nbsp;if (n-p)%b==0: return True<br>&nbsp;&nbsp;&nbsp;&nbsp;p*=a<br>&nbsp;&nbsp;return False</code><br>Don't forget $k=0$ (i.e. $p=1$) covers the case $n \equiv 1 \pmod b$, and $n=1$ itself returns True via $(1-1)\%b=0$.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-amber-500 hover:text-amber-400 cursor-pointer">Style</summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-amber-900"><strong>Canonical pattern:</strong> A reachability problem in disguise — the right move is to find a <strong>closed-form expression</strong> for every element of the set, turning a search problem into a checkable formula.<br><strong>Twist:</strong> The two operations ($\times a$ and $+b$) interact in a subtle way: multiplying by $a$ scales any pending offset, but the structure still collapses to a clean two-parameter form.<br><strong>Builds:</strong> Spotting <strong>algebraic invariants</strong> under combined operations, and recognizing when iterating one parameter (with the other free) is bounded by $\log$.<br><strong>Platform idiom:</strong> Classic Codeforces math/constructive — short code, but you only see it after the algebraic reframe.</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Editorial
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800"><a href="https://codeforces.com/search?query=editorial+1542" target="_blank" class="text-blue-400 hover:text-blue-300 underline">Read Editorial &rarr;</a></div>
+                        </details>
+                        
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </details>
+    
+    <details class="bg-gray-900 rounded-xl border border-gray-800 group">
+        <summary class="px-4 py-3 cursor-pointer select-none flex items-center justify-between text-sm font-semibold text-gray-300 hover:text-white">
+            <span>C3</span>
+            <span class="flex items-center gap-3 shrink-0">
+                <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                <span class="text-gray-600 text-xs group-open:rotate-90 transition-transform">▸</span>
+            </span>
+        </summary>
+        <div class="px-2 sm:px-3 pb-3 pt-1 space-y-2">
+            
+            <div class="bg-gray-950/40 rounded-lg border border-gray-800
+                border-l-4 border-l-yellow-500">
+                <div class="p-3 sm:p-4">
+                    <a href="https://atcoder.jp/contests/abc165/tasks/abc165_c" target="_blank"
+                       class="text-lg font-semibold text-blue-400 hover:underline">
+                        C. Many Requirements
+                    </a>
+                    
+                    <div class="mt-3 space-y-1.5">
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 1
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Before reaching for any algorithm, stare at the constraints: $N \leq 10$ and $M \leq 10$. How many non-decreasing sequences $A$ of length $N$ with values in $[1, M]$even <em>exist</em>? Try to count them — or even list them by hand for $N=M=3$.</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 2
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">A non-decreasing sequence of length $N$ over $\{1, \ldots, M\}$ is equivalent to a multiset of size $N$ from $M$ choices, so by stars-and-bars there are $\binom{N+M-1}{N}$ of them. For $N=M=10$ that's $92378$ — you can <strong>afford to enumerate every valid sequence</strong> and score each one.</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 3
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Build sequences with simple <strong>recursive backtracking</strong>: pick $A_1$, then for each choice loop $A_2 \geq A_1$, then $A_3 \geq A_2$, and so on. When the sequence has length $N$, evaluate the score against all $Q$ quadruples and update the maximum.</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 4
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Total work is bounded by (number of sequences) $\times Q \approx 92378 \times 50 \approx 4.6 \times 10^6$ operations — well within Python's limit. Define $\text{dfs}(\text{idx}, \text{prev}, A)$: if $\text{idx} = N$ score it; otherwise loop $v$ from $\text{prev}$ to $M$, append $v$, recurse, pop.</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 5
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Code sketch:<br><pre>import sys
+input = sys.stdin.readline
+N, M, Q = map(int, input().split())
+quads = [tuple(map(int, input().split())) for _ in range(Q)]
+best = 0
+def dfs(A):
+ global best
+ if len(A) == N:
+ s = sum(d for a,b,c,d in quads if A[b-1]-A[a-1]==c)
+ if s > best: best = s
+ return
+ start = A[-1] if A else 1
+ for v in range(start, M+1):
+ A.append(v); dfs(A); A.pop()
+dfs([])
+print(best)</pre>Edge cases: $N=2$ (sequences are just pairs), and remember $a_i, b_i$ are 1-indexed in the input.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-amber-500 hover:text-amber-400 cursor-pointer">Style</summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-amber-900"><strong>Canonical pattern:</strong> Brute-force enumeration of all valid candidates — when constraints are tiny, the answer is to just try everything.<br><strong>Twist:</strong> The objective looks like it demands cleverness (DP, greedy, LP-flavor optimization), but $N, M \leq 10$ collapses the search space to under 100k non-decreasing sequences. The whole skill is recognizing that.<br><strong>Builds:</strong> Reading constraints first and trusting them — many problems are gift-wrapped brute force in disguise. Also the stars-and-bars intuition for counting non-decreasing sequences.<br><strong>Platform idiom:</strong> Classic ABC-C shape — small bounds, recursive enumeration, score-and-take-max. AtCoder rewards spotting that brute force is intended over reaching for a fancier algorithm.</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Editorial
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800"><a href="https://atcoder.jp/contests/abc165/editorial" target="_blank" class="text-blue-400 hover:text-blue-300 underline">Read Editorial &rarr;</a></div>
+                        </details>
+                        
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </details>
+    
+    <details class="bg-gray-900 rounded-xl border border-gray-800 group">
+        <summary class="px-4 py-3 cursor-pointer select-none flex items-center justify-between text-sm font-semibold text-gray-300 hover:text-white">
+            <span>C4</span>
+            <span class="flex items-center gap-3 shrink-0">
+                <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                <span class="text-gray-600 text-xs group-open:rotate-90 transition-transform">▸</span>
+            </span>
+        </summary>
+        <div class="px-2 sm:px-3 pb-3 pt-1 space-y-2">
+            
+            <div class="bg-gray-950/40 rounded-lg border border-gray-800
+                border-l-4 border-l-yellow-500">
+                <div class="p-3 sm:p-4">
+                    <a href="https://leetcode.com/problems/parallel-courses-ii/" target="_blank"
+                       class="text-lg font-semibold text-blue-400 hover:underline">
+                        Parallel Courses II
+                    </a>
+                    
+                    <div class="mt-3 space-y-1.5">
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 1
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Try the obvious greedy on example 2 by hand: with $k=2$ and courses $\{2,3,4\}$ all initially available, does it matter <strong>which two</strong> you pick first? Picking $\{2,3\}$ vs $\{2,4\}$ leads to different futures — so there's a real <strong>choice</strong> at every semester, not a forced move. Any rule like "prefer the course that unlocks the most" can be broken with a small counterexample.</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 2
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Look at the constraint $n \leq 15$. That bound is unusual — it's far too small for a polynomial algorithm to be the intended target, and far too large for brute-force permutations of course orderings. It's exactly the size where the <strong>entire set of completed courses</strong> can live inside one integer as a bitmask of $\leq 2^{15} = 32768$ states.</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 3
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Define $dp[\text{mask}] = $ minimum semesters to have completed exactly the courses in $\text{mask}$. From a state $\text{mask}$, compute $\text{available} = \{v : \text{prereq}(v) \subseteq \text{mask}\} \setminus \text{mask}$ as a bitmask, then transition to $dp[\text{mask} \mid \text{sub}] = dp[\text{mask}] + 1$ for every <strong>submask</strong> $\text{sub}$ of $\text{available}$ with $\text{popcount}(\text{sub}) \leq k$. Enumerate submasks with the standard trick: <code>sub = available; while sub:...; sub = (sub - 1) &amp; available</code>, plus $\text{sub} = 0$ skipped.</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 4
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Precompute <code>pre[v]</code> = bitmask of $v$'s prerequisites. Then:<br><code>dp = [INF]*(1&lt;&lt;n); dp[0]=0</code><br><code>for mask in range(1&lt;&lt;n):</code><br>&nbsp;&nbsp;<code>if dp[mask]==INF: continue</code><br>&nbsp;&nbsp;<code>avail = 0</code><br>&nbsp;&nbsp;<code>for v in range(n):</code><br>&nbsp;&nbsp;&nbsp;&nbsp;<code>if not (mask&gt;&gt;v)&amp;1 and (pre[v]&amp;mask)==pre[v]: avail |= 1&lt;&lt;v</code><br>&nbsp;&nbsp;<code>sub = avail</code><br>&nbsp;&nbsp;<code>while sub:</code><br>&nbsp;&nbsp;&nbsp;&nbsp;<code>if bin(sub).count('1')&lt;=k: dp[mask|sub] = min(dp[mask|sub], dp[mask]+1)</code><br>&nbsp;&nbsp;&nbsp;&nbsp;<code>sub = (sub-1)&amp;avail</code><br>Return $dp[2^n-1]$. Total work is $O(3^n \cdot n) \approx 2 \cdot 10^7$ for $n=15$ — fine in Python. Don't forget to skip $\text{sub}=0$ (it would loop forever) and that <code>pre[v]&amp;mask == pre[v]</code> is the clean "all prereqs done" check.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-amber-500 hover:text-amber-400 cursor-pointer">Style</summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-amber-900"><strong>Canonical pattern:</strong> $n \leq 15$ is the loud signal — the entire set of finished courses fits in a single integer, so this is <strong>bitmask DP over subsets</strong>.<br><strong>Twist:</strong> the obvious greedy ("each semester take any $k$ available courses, prefer those that unlock the most") <strong>provably fails</strong> — you must enumerate which $k$-subset of available courses to take this semester.<br><strong>Builds:</strong> recognizing when a tempting greedy breaks under choice constraints, and the standard <strong>"iterate over submasks of a mask"</strong> idiom.<br><strong>Platform idiom:</strong> classic LC "looks like a scheduling greedy but isn't" trap — small $n$ is the tell that exhaustive subset search is intended.</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Editorial
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800"><a href="https://leetcode.com/problems/parallel-courses-ii/solutions/" target="_blank" class="text-blue-400 hover:text-blue-300 underline">Read Editorial &rarr;</a></div>
+                        </details>
+                        
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </details>
+    
+    <details class="bg-gray-900 rounded-xl border border-gray-800 group">
+        <summary class="px-4 py-3 cursor-pointer select-none flex items-center justify-between text-sm font-semibold text-gray-300 hover:text-white">
+            <span>C5</span>
+            <span class="flex items-center gap-3 shrink-0">
+                <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                <span class="text-gray-600 text-xs group-open:rotate-90 transition-transform">▸</span>
+            </span>
+        </summary>
+        <div class="px-2 sm:px-3 pb-3 pt-1 space-y-2">
+            
+            <div class="bg-gray-950/40 rounded-lg border border-gray-800
+                border-l-4 border-l-red-500
+                ">
+                <div class="p-3 sm:p-4">
+                    <a href="https://leetcode.com/problems/minimum-sum-after-divisible-sum-deletions/" target="_blank"
+                       class="text-lg font-semibold text-blue-400 hover:underline">
+                        Minimum Sum After Divisible Sum Deletions
+                    </a>
+                    
+                    <div class="mt-3 space-y-1.5">
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 1
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Stop simulating deletions in order. Just look at the <strong>final state</strong>: some elements survive, the rest are gone. What property must the <strong>removed</strong> elements satisfy, taken together?</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 2
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Mark surviving elements left-to-right. Between consecutive survivors (and before the first / after the last) sits a <strong>contiguous block of deleted elements</strong>. Convince yourself that any valid deletion sequence yields blocks <strong>each summing to a multiple of $k$</strong> — and conversely, any such partition is achievable by deleting each block as one operation. So the problem becomes: <strong>choose which elements to keep</strong> so each gap of dropped elements sums to a multiple of $k$, minimizing kept sum.</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 3
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Now that the operation is gone, you only need to detect when a contiguous block has sum divisible by $k$. What's the standard tool for "sum of a subarray $\equiv 0 \pmod k$"?</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 4
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800"><strong>Prefix sums mod $k$.</strong> Let $P[0]=0$ and $P[i] = (nums[0]+\dots+nums[i-1]) \bmod k$. The subarray $(j, i]$ sums to a multiple of $k$ iff $P[j] \equiv P[i] \pmod k$. So a "deletable gap" corresponds to a pair of indices sharing a residue.</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 5
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Sweep left-to-right and define $dp[i]$ = <strong>minimum kept sum</strong> using the first $i$ elements (with $dp[0]=0$). Two ways to extend: <strong>keep</strong> $nums[i-1]$, or <strong>close a deletion block</strong> ending at $i$.</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 6
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Transitions: $dp[i] = dp[i-1] + nums[i-1]$ (keep), and $dp[i] = dp[j]$ for any $j&lt;i$ with $P[j] \equiv P[i] \pmod k$ (delete the whole subarray $(j,i]$). Take the min.</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 7
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Looping all $j$ each step is $O(n^2)$, too slow for $n \le 10^5$. Notice you only need the <strong>best $dp[j]$ per residue class</strong>: maintain a dict <code>best[r]</code> = $\min\{dp[j] : P[j] \bmod k = r\}$. Transition becomes $O(1)$.</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 8
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800">Algorithm in one pass: for each $i$ from $1$ to $n$, compute $r = P[i] \bmod k$, then $dp[i] = \min(dp[i-1] + nums[i-1],\ \text{best}.get(r, +\infty))$, and update <code>best[r] = min(best[r], dp[i])</code>. <strong>Initialize</strong> $\text{best}[0] = 0$ for $P[0]=0$ before the loop. Answer: $dp[n]$. Time $O(n)$, space $O(\min(n, k))$.</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 9
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800"><strong>Order pitfall:</strong> when processing index $i$, read <code>best[r]</code> <strong>before</strong> writing $dp[i]$ into it — otherwise you'd allow $j=i$ (an empty deletion that just copies the current state) and miss real transitions where the same residue last appeared earlier with a smaller $dp$. Initializing with $\text{best}[0]=0$ <strong>before</strong> the first iteration is what makes "delete a prefix whose sum is a multiple of $k$" work.</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 10
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800"><strong>Quick edge cases:</strong> $k=1$ — every subarray is divisible by $1$, so all residues are $0$, $\text{best}[0]$ stays at $0$, and the answer is $0$ as expected. Single element: if $nums[0] \bmod k = 0$ the residue matches $\text{best}[0]=0$ and $dp[1]=0$; otherwise $dp[1]=nums[0]$. Both correct.</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 11
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800"><strong>Python sketch:</strong><br><code>def minSum(nums, k):</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;best = {0: 0}</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;P = 0</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;dp = 0</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;INF = float('inf')</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;for x in nums:</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P = (P + x) % k</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dp = min(dp + x, best.get(P, INF))</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if dp < best.get(P, INF):</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;best[P] = dp</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;return dp</code><br>One pass, dict keyed by residue — clean $O(n)$ with no special cases needed.</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Hint 12
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800"><strong>Sanity check on Example 2:</strong> <code>nums=[3,1,4,1,5], k=3</code>. Prefix sums mod 3: $P=[0,0,1,2,0,2]$. Trace: start $dp=0,\ \text{best}=\{0:0\}$. $i{=}1$ ($x{=}3, P{=}0$): $dp=\min(3,\ 0)=0$, $\text{best}[0]=0$. $i{=}2$ ($x{=}1, P{=}1$): $dp=\min(1, \infty)=1$, $\text{best}[1]=1$. $i{=}3$ ($x{=}4, P{=}2$): $dp=\min(5, \infty)=5$, $\text{best}[2]=5$. $i{=}4$ ($x{=}1, P{=}0$): $dp=\min(6,\ 0)=0$, $\text{best}[0]=0$. $i{=}5$ ($x{=}5, P{=}2$): $dp=\min(5,\ 5)=5$. Answer $5$ ✓.</div>
+                        </details>
+                        
+                        <details>
+                            <summary class="text-sm text-amber-500 hover:text-amber-400 cursor-pointer">Style</summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-amber-900"><strong>Canonical pattern:</strong> prefix-sum residues mod $k$ + a left-to-right DP that keeps the best answer per residue class — a classic <strong>"prefix sums equal mod $k$ ⇔ deletable subarray"</strong> setup.<br><strong>Twist:</strong> the operational story (delete, gap closes, re-delete) sounds messy, but it collapses to a static reformulation: pick which elements survive, and require each gap of removed elements to sum to a multiple of $k$.<br><strong>Builds:</strong> the habit of <strong>looking past the operation</strong> at the invariant of the final state, then mapping "divisible-by-$k$ subarray" to <strong>matching prefix-sum residues</strong>.<br><strong>Platform idiom:</strong> LC-flavored — phrased as a sequence of greedy-looking moves, but the clean solution is a linear DP indexed by residue.</div>
+                        </details>
+                        
+                        
+                        <details>
+                            <summary class="text-sm text-gray-500 hover:text-gray-300 cursor-pointer">
+                                Editorial
+                            </summary>
+                            <div class="text-sm text-gray-300 mt-1.5 pl-3 border-l-2 border-gray-800"><a href="https://leetcode.com/problems/minimum-sum-after-divisible-sum-deletions/solutions/" target="_blank" class="text-blue-400 hover:text-blue-300 underline">Read Editorial &rarr;</a></div>
+                        </details>
+                        
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </details>
+    
+</div>
+
+
+    </main>
+
+    <footer class="text-center text-xs text-gray-700 py-8">
+        Generated by CP Trainer on 2026-05-03
+    </footer>
+</body>
+</html>
